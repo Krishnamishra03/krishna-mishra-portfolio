@@ -41,7 +41,7 @@ export function Nav() {
               href={l.href}
               strength={0.45}
               radius={80}
-              className="rounded-full px-3.5 py-1.5 text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+              className="inline-block rounded-full px-3.5 py-1.5 text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
             >
               {l.label}
             </Magnetic>
@@ -51,7 +51,7 @@ export function Nav() {
           as="a"
           href="#contact"
           strength={0.4}
-          className="rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background sm:text-sm"
+          className="inline-block rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background sm:text-sm"
         >
           Hire me
         </Magnetic>
