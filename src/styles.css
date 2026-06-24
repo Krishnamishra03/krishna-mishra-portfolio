@@ -48,36 +48,38 @@
   --color-glass: var(--glass);
   --color-glass-border: var(--glass-border);
   --color-aurora: var(--aurora);
-  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui;
-  --font-sans: "Inter", ui-sans-serif, system-ui;
+  --font-display: "Sora", "Plus Jakarta Sans", ui-sans-serif, system-ui;
+  --font-sans: "Manrope", "Inter", ui-sans-serif, system-ui;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 :root {
   --radius: 0.75rem;
-  /* Cinematic studio — machined aluminum on void */
-  --background: oklch(0.13 0.005 260);
+  /* Glass Aurora — iridescent neon on deep navy */
+  --background: oklch(0.115 0.022 270);
   --foreground: oklch(0.97 0.003 260);
-  --card: oklch(0.16 0.006 260);
+  --card: oklch(0.16 0.024 270);
   --card-foreground: oklch(0.97 0.003 260);
-  --popover: oklch(0.16 0.006 260);
+  --popover: oklch(0.16 0.024 270);
   --popover-foreground: oklch(0.97 0.003 260);
   --primary: oklch(0.97 0.003 260);
-  --primary-foreground: oklch(0.13 0.005 260);
+  --primary-foreground: oklch(0.115 0.022 270);
   --secondary: oklch(0.22 0.008 260);
   --secondary-foreground: oklch(0.97 0.003 260);
   --muted: oklch(0.22 0.008 260);
   --muted-foreground: oklch(0.68 0.012 260);
-  --accent: oklch(0.76 0.16 230);
-  --accent-foreground: oklch(0.13 0.005 260);
+  --accent: oklch(0.82 0.18 165);
+  --accent-foreground: oklch(0.115 0.022 270);
   --destructive: oklch(0.65 0.22 25);
   --destructive-foreground: oklch(0.97 0.003 260);
-  --border: oklch(1 0 0 / 8%);
+  --border: oklch(1 0 0 / 9%);
   --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.76 0.16 230 / 60%);
-  --glass: oklch(1 0 0 / 4%);
-  --glass-border: oklch(1 0 0 / 10%);
-  --aurora: oklch(0.76 0.16 230);
+  --ring: oklch(0.82 0.18 165 / 60%);
+  --glass: oklch(1 0 0 / 5%);
+  --glass-border: oklch(1 0 0 / 12%);
+  --aurora: oklch(0.82 0.18 165);
+  --aurora-2: oklch(0.72 0.21 300);
+  --aurora-3: oklch(0.78 0.16 230);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -162,11 +164,13 @@
 }
 
 @utility text-aurora {
-  background: linear-gradient(110deg, oklch(0.78 0.14 230), oklch(0.72 0.18 280), oklch(0.85 0.12 200));
+  background: linear-gradient(110deg, var(--aurora) 0%, var(--aurora-2) 50%, var(--aurora-3) 100%);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  animation: gradient-pan 8s ease-in-out infinite;
 }
 
 @utility grain {
@@ -199,6 +203,38 @@
 .animate-aurora { animation: aurora-shift 18s ease-in-out infinite; }
 .animate-float-y { animation: float-y 6s ease-in-out infinite; }
 .animate-marquee { animation: marquee 40s linear infinite; }
+
+@keyframes gradient-pan {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@utility mesh-bg {
+  background-image:
+    radial-gradient(at 12% 8%, oklch(0.82 0.18 165 / 0.38) 0px, transparent 45%),
+    radial-gradient(at 88% 14%, oklch(0.72 0.21 300 / 0.36) 0px, transparent 45%),
+    radial-gradient(at 50% 50%, oklch(0.78 0.16 230 / 0.18) 0px, transparent 60%),
+    radial-gradient(at 10% 90%, oklch(0.72 0.21 300 / 0.28) 0px, transparent 50%),
+    radial-gradient(at 90% 95%, oklch(0.82 0.18 165 / 0.28) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+@utility gradient-border {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, oklch(0.82 0.18 165 / 0.6), oklch(0.72 0.21 300 / 0.4) 40%, transparent 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
 
 @keyframes spin {
   from { transform: rotate(0deg); }

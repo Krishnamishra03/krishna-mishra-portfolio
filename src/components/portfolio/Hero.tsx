@@ -50,9 +50,10 @@ export function Hero() {
     <section id="top" ref={ref} className="relative grain min-h-[100svh] overflow-hidden pt-28">
       {/* Aurora backdrop */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-[20%] h-[680px] w-[680px] -translate-x-1/2 rounded-full bg-aurora/25 blur-[140px] animate-aurora" />
-        <div className="absolute right-[10%] top-[40%] h-[420px] w-[420px] rounded-full bg-violet-500/15 blur-[120px] animate-aurora [animation-delay:-6s]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,oklch(0.2_0.04_260)_0%,transparent_60%)]" />
+        <div className="absolute left-1/2 top-[18%] h-[760px] w-[760px] -translate-x-1/2 rounded-full bg-aurora/45 blur-[160px] animate-aurora" />
+        <div className="absolute right-[6%] top-[36%] h-[520px] w-[520px] rounded-full bg-violet-500/40 blur-[140px] animate-aurora [animation-delay:-6s]" />
+        <div className="absolute left-[4%] bottom-[10%] h-[420px] w-[420px] rounded-full bg-sky-400/25 blur-[140px] animate-aurora [animation-delay:-12s]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_130%,oklch(0.18_0.05_270)_0%,transparent_55%)]" />
         <div
           className="absolute inset-0 opacity-[0.07] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"
           style={{
