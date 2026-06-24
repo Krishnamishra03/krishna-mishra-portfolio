@@ -20,7 +20,7 @@ const certs: Cert[] = [
     id: "MFE-2K25-014",
     skills: ["React", "UI Systems", "Accessibility"],
     accent: "oklch(0.82 0.18 165)",
-    image: "/certs/meta-frontend.png",
+    image: "/certs/meta-frontend.jpg",
     featured: true,
   },
   {
@@ -30,7 +30,7 @@ const certs: Cert[] = [
     id: "AWS-DEV-A-9821",
     skills: ["Lambda", "DynamoDB", "S3", "CI/CD"],
     accent: "oklch(0.84 0.15 80)",
-    image: "/certs/aws-developer.png",
+    image: "/certs/aws-developer.jpg",
   },
   {
     title: "Google UX Design Professional",
@@ -39,7 +39,7 @@ const certs: Cert[] = [
     id: "GUX-PRO-4471",
     skills: ["Research", "Prototyping", "Figma"],
     accent: "oklch(0.78 0.16 230)",
-    image: "/certs/google-ux.png",
+    image: "/certs/google-ux.jpg",
   },
   {
     title: "MongoDB Associate Developer",
@@ -48,7 +48,7 @@ const certs: Cert[] = [
     id: "MDB-ADEV-3120",
     skills: ["Aggregation", "Indexing", "Atlas"],
     accent: "oklch(0.72 0.21 300)",
-    image: "/certs/mongodb-developer.png",
+    image: "/certs/mongodb-developer.jpg",
   },
   {
     title: "React Native — The Practical Guide",
@@ -57,7 +57,7 @@ const certs: Cert[] = [
     id: "RN-PR-7765",
     skills: ["Expo", "Native Modules", "Animations"],
     accent: "oklch(0.82 0.18 165)",
-    image: "/certs/react-native.png",
+    image: "/certs/react-native.jpg",
   },
   {
     title: "Stripe Certified Integration Engineer",
@@ -66,7 +66,7 @@ const certs: Cert[] = [
     id: "STR-CIE-2208",
     skills: ["Payments", "Webhooks", "Subscriptions"],
     accent: "oklch(0.78 0.16 230)",
-    image: "/certs/stripe-payments.png",
+    image: "/certs/stripe-payments.jpg",
   },
 ];
 
