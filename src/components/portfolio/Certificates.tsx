@@ -1,5 +1,11 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "./Section";
+import metaFrontend from "@/assets/meta-frontend.png.asset.json";
+import awsDeveloper from "@/assets/aws-developer.png.asset.json";
+import googleUx from "@/assets/google-ux.png.asset.json";
+import mongodbDeveloper from "@/assets/mongodb-developer.png.asset.json";
+import reactNative from "@/assets/react-native.png.asset.json";
+import stripePayments from "@/assets/stripe-payments.png.asset.json";
 
 type Cert = {
   title: string;
@@ -8,6 +14,7 @@ type Cert = {
   id: string;
   skills: string[];
   accent: string;
+  image: string;
   featured?: boolean;
 };
 
@@ -19,6 +26,7 @@ const certs: Cert[] = [
     id: "MFE-2K25-014",
     skills: ["React", "UI Systems", "Accessibility"],
     accent: "oklch(0.82 0.18 165)",
+    image: metaFrontend.url,
     featured: true,
   },
   {
@@ -28,6 +36,7 @@ const certs: Cert[] = [
     id: "AWS-DEV-A-9821",
     skills: ["Lambda", "DynamoDB", "S3", "CI/CD"],
     accent: "oklch(0.84 0.15 80)",
+    image: awsDeveloper.url,
   },
   {
     title: "Google UX Design Professional",
@@ -36,6 +45,7 @@ const certs: Cert[] = [
     id: "GUX-PRO-4471",
     skills: ["Research", "Prototyping", "Figma"],
     accent: "oklch(0.78 0.16 230)",
+    image: googleUx.url,
   },
   {
     title: "MongoDB Associate Developer",
@@ -44,6 +54,7 @@ const certs: Cert[] = [
     id: "MDB-ADEV-3120",
     skills: ["Aggregation", "Indexing", "Atlas"],
     accent: "oklch(0.72 0.21 300)",
+    image: mongodbDeveloper.url,
   },
   {
     title: "React Native — The Practical Guide",
@@ -52,6 +63,7 @@ const certs: Cert[] = [
     id: "RN-PR-7765",
     skills: ["Expo", "Native Modules", "Animations"],
     accent: "oklch(0.82 0.18 165)",
+    image: reactNative.url,
   },
   {
     title: "Stripe Certified Integration Engineer",
@@ -60,6 +72,7 @@ const certs: Cert[] = [
     id: "STR-CIE-2208",
     skills: ["Payments", "Webhooks", "Subscriptions"],
     accent: "oklch(0.78 0.16 230)",
+    image: stripePayments.url,
   },
 ];
 
@@ -138,7 +151,7 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
         className="absolute inset-0 -z-10 rounded-3xl opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-60"
         style={{ background: cert.accent }}
       />
-      <div className="glass-panel relative h-full overflow-hidden rounded-3xl p-6 transition-all duration-500 group-hover:-translate-y-1">
+      <div className="glass-panel relative h-full overflow-hidden rounded-3xl p-5 transition-all duration-500 group-hover:-translate-y-1">
         {/* accent stripe */}
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-px"
@@ -180,13 +193,32 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
           </span>
         </div>
 
+        {/* certificate image */}
+        <div
+          className="relative mb-5 overflow-hidden rounded-2xl border border-white/10 bg-black/20"
+          style={{ aspectRatio: "3 / 2" }}
+        >
+          <img
+            src={cert.image}
+            alt={`${cert.title} certificate`}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{
+              background: `linear-gradient(135deg, ${cert.accent.replace(")", ", 0.12)")} 0%, transparent 60%)`,
+            }}
+          />
+        </div>
+
         {/* title */}
         <h3 className="max-w-[80%] font-display text-xl font-bold leading-tight tracking-tight text-foreground md:text-2xl">
           {cert.title}
         </h3>
 
         {/* skills */}
-        <div className="mt-6 flex flex-wrap gap-1.5">
+        <div className="mt-4 flex flex-wrap gap-1.5">
           {cert.skills.map((s) => (
             <span
               key={s}
@@ -198,7 +230,7 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
         </div>
 
         {/* id strip */}
-        <div className="mt-6 flex items-center justify-between border-t border-border/60 pt-4">
+        <div className="mt-5 flex items-center justify-between border-t border-border/60 pt-4">
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
             ID · <span className="text-foreground/90">{cert.id}</span>
           </div>
