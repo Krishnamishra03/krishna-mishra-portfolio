@@ -207,7 +207,7 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
           <div
             className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             style={{
-              background: `linear-gradient(135deg, ${cert.accent.replace(")", ", 0.12)")} 0%, transparent 60%)`,
+              background: `linear-gradient(135deg, ${cert.accent.replace(")", " / 0.12)")} 0%, transparent 60%)`,
             }}
           />
         </div>
