@@ -211,9 +211,12 @@
 
 @utility mesh-bg {
   background-image:
-    radial-gradient(at 18% 12%, oklch(0.82 0.18 165 / 0.22) 0px, transparent 50%),
-    radial-gradient(at 82% 18%, oklch(0.72 0.21 300 / 0.22) 0px, transparent 50%),
-    radial-gradient(at 50% 92%, oklch(0.78 0.16 230 / 0.18) 0px, transparent 55%);
+    radial-gradient(at 12% 8%, oklch(0.82 0.18 165 / 0.38) 0px, transparent 45%),
+    radial-gradient(at 88% 14%, oklch(0.72 0.21 300 / 0.36) 0px, transparent 45%),
+    radial-gradient(at 50% 50%, oklch(0.78 0.16 230 / 0.18) 0px, transparent 60%),
+    radial-gradient(at 10% 90%, oklch(0.72 0.21 300 / 0.28) 0px, transparent 50%),
+    radial-gradient(at 90% 95%, oklch(0.82 0.18 165 / 0.28) 0px, transparent 50%);
+  background-attachment: fixed;
 }
 
 @utility gradient-border {
