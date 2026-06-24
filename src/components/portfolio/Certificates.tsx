@@ -1,11 +1,5 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "./Section";
-import metaFrontend from "@/assets/meta-frontend.png.asset.json";
-import awsDeveloper from "@/assets/aws-developer.png.asset.json";
-import googleUx from "@/assets/google-ux.png.asset.json";
-import mongodbDeveloper from "@/assets/mongodb-developer.png.asset.json";
-import reactNative from "@/assets/react-native.png.asset.json";
-import stripePayments from "@/assets/stripe-payments.png.asset.json";
 
 type Cert = {
   title: string;
@@ -26,7 +20,7 @@ const certs: Cert[] = [
     id: "MFE-2K25-014",
     skills: ["React", "UI Systems", "Accessibility"],
     accent: "oklch(0.82 0.18 165)",
-    image: metaFrontend.url,
+    image: "/certs/meta-frontend.png",
     featured: true,
   },
   {
@@ -36,7 +30,7 @@ const certs: Cert[] = [
     id: "AWS-DEV-A-9821",
     skills: ["Lambda", "DynamoDB", "S3", "CI/CD"],
     accent: "oklch(0.84 0.15 80)",
-    image: awsDeveloper.url,
+    image: "/certs/aws-developer.png",
   },
   {
     title: "Google UX Design Professional",
@@ -45,7 +39,7 @@ const certs: Cert[] = [
     id: "GUX-PRO-4471",
     skills: ["Research", "Prototyping", "Figma"],
     accent: "oklch(0.78 0.16 230)",
-    image: googleUx.url,
+    image: "/certs/google-ux.png",
   },
   {
     title: "MongoDB Associate Developer",
@@ -54,7 +48,7 @@ const certs: Cert[] = [
     id: "MDB-ADEV-3120",
     skills: ["Aggregation", "Indexing", "Atlas"],
     accent: "oklch(0.72 0.21 300)",
-    image: mongodbDeveloper.url,
+    image: "/certs/mongodb-developer.png",
   },
   {
     title: "React Native — The Practical Guide",
@@ -63,7 +57,7 @@ const certs: Cert[] = [
     id: "RN-PR-7765",
     skills: ["Expo", "Native Modules", "Animations"],
     accent: "oklch(0.82 0.18 165)",
-    image: reactNative.url,
+    image: "/certs/react-native.png",
   },
   {
     title: "Stripe Certified Integration Engineer",
@@ -72,7 +66,7 @@ const certs: Cert[] = [
     id: "STR-CIE-2208",
     skills: ["Payments", "Webhooks", "Subscriptions"],
     accent: "oklch(0.78 0.16 230)",
-    image: stripePayments.url,
+    image: "/certs/stripe-payments.png",
   },
 ];
 
