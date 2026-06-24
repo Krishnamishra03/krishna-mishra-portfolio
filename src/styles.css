@@ -55,31 +55,31 @@
 
 :root {
   --radius: 0.75rem;
-  /* Glass Aurora — iridescent neon on deep navy */
-  --background: oklch(0.115 0.022 270);
+  /* Original deep neutral dark */
+  --background: oklch(0.09 0.005 260);
   --foreground: oklch(0.97 0.003 260);
-  --card: oklch(0.16 0.024 270);
+  --card: oklch(0.13 0.006 260);
   --card-foreground: oklch(0.97 0.003 260);
-  --popover: oklch(0.16 0.024 270);
+  --popover: oklch(0.13 0.006 260);
   --popover-foreground: oklch(0.97 0.003 260);
   --primary: oklch(0.97 0.003 260);
-  --primary-foreground: oklch(0.115 0.022 270);
-  --secondary: oklch(0.22 0.008 260);
+  --primary-foreground: oklch(0.13 0.006 260);
+  --secondary: oklch(0.2 0.006 260);
   --secondary-foreground: oklch(0.97 0.003 260);
-  --muted: oklch(0.22 0.008 260);
+  --muted: oklch(0.2 0.006 260);
   --muted-foreground: oklch(0.68 0.012 260);
-  --accent: oklch(0.82 0.18 165);
-  --accent-foreground: oklch(0.115 0.022 270);
+  --accent: oklch(0.76 0.16 230);
+  --accent-foreground: oklch(0.13 0.006 260);
   --destructive: oklch(0.65 0.22 25);
   --destructive-foreground: oklch(0.97 0.003 260);
-  --border: oklch(1 0 0 / 9%);
+  --border: oklch(1 0 0 / 8%);
   --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.82 0.18 165 / 60%);
-  --glass: oklch(1 0 0 / 5%);
-  --glass-border: oklch(1 0 0 / 12%);
-  --aurora: oklch(0.82 0.18 165);
-  --aurora-2: oklch(0.72 0.21 300);
-  --aurora-3: oklch(0.78 0.16 230);
+  --ring: oklch(0.76 0.16 230 / 60%);
+  --glass: oklch(1 0 0 / 4%);
+  --glass-border: oklch(1 0 0 / 10%);
+  --aurora: oklch(0.76 0.16 230);
+  --aurora-2: oklch(0.76 0.16 230);
+  --aurora-3: oklch(0.76 0.16 230);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
