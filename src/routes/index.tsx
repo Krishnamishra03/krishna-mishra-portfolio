@@ -1,29 +1,36 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Portfolio } from "@/components/portfolio/Portfolio";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Krishna Mishra — Software Engineer & Full Stack Developer" },
+      { name: "description", content: "Portfolio of Krishna Mishra: full-stack web platforms, mobile apps, AI integrations. Care Connect, Rail-Vision AI, Gyan AI, and more." },
+      { property: "og:title", content: "Krishna Mishra — Software Engineer & Full Stack Developer" },
+      { property: "og:description", content: "Full-stack and mobile engineering portfolio crafted with precision." },
+      { property: "og:url", content: "/" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Krishna Mishra",
+          jobTitle: "Software Engineer, Full Stack & Mobile Developer",
+          url: "/",
+          sameAs: [
+            "https://github.com/",
+            "https://linkedin.com/",
+          ],
+        }),
+      },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  return <Portfolio />;
 }
