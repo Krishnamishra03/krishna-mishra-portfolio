@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
+import { Magnetic } from "./Magnetic";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
@@ -49,13 +50,15 @@ export function Contact() {
                 />
               </div>
               <TextareaField label="Message" name="message" />
-              <motion.button
-                whileTap={{ scale: 0.97 }}
-                type="submit"
-                className="mt-2 w-full rounded-xl bg-foreground py-3.5 text-sm font-semibold text-background transition-all hover:opacity-90"
-              >
-                {sent ? "Sent ✓  I'll be in touch" : "Send transmission"}
-              </motion.button>
+              <Magnetic as="div" strength={0.25} radius={160} className="mt-2 w-full">
+                <motion.button
+                  whileTap={{ scale: 0.97 }}
+                  type="submit"
+                  className="w-full rounded-xl bg-foreground py-3.5 text-sm font-semibold text-background transition-all hover:opacity-90"
+                >
+                  {sent ? "Sent ✓  I'll be in touch" : "Send transmission"}
+                </motion.button>
+              </Magnetic>
             </form>
           </div>
         </div>
