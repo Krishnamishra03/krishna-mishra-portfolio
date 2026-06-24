@@ -7,6 +7,7 @@ const links = [
   { href: "#universe", label: "Universe" },
   { href: "#skills", label: "Stack" },
   { href: "#terminal", label: "Console" },
+  { href: "#certificates", label: "Certs" },
   { href: "#contact", label: "Contact" },
 ];
 
