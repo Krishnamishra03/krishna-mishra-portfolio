@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import heroObjects from "@/assets/hero-objects.jpg";
+import { Magnetic } from "./Magnetic";
 
 const typing = [
   "MERN Stack",
@@ -131,25 +132,31 @@ export function Hero() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <a
+            <Magnetic
+              as="a"
               href="#work"
-              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-all hover:scale-[1.02] active:scale-95"
+              strength={0.4}
+              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors"
             >
               View Projects
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
-            </a>
-            <a
+            </Magnetic>
+            <Magnetic
+              as="a"
               href="#"
-              className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-white/5 glass-panel"
+              strength={0.35}
+              className="glass-panel inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-white/5"
             >
               Download Résumé
-            </a>
-            <a
+            </Magnetic>
+            <Magnetic
+              as="a"
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-transparent px-5 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              strength={0.3}
+              className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               Hire me →
-            </a>
+            </Magnetic>
           </div>
         </motion.div>
       </div>

@@ -27,8 +27,10 @@ export function Cursor() {
     };
     const over = (e: MouseEvent) => {
       const t = e.target as HTMLElement;
+      const mag = t.closest("[data-magnetic]");
       const hot = t.closest("a,button,[data-cursor]");
-      ring.current?.classList.toggle("cursor-ring--hot", !!hot);
+      ring.current?.classList.toggle("cursor-ring--mag", !!mag);
+      ring.current?.classList.toggle("cursor-ring--hot", !!hot && !mag);
     };
     window.addEventListener("mousemove", move, { passive: true });
     window.addEventListener("mouseover", over);

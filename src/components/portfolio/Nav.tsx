@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Magnetic } from "./Magnetic";
 
 const links = [
   { href: "#work", label: "Work" },
@@ -24,31 +25,36 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-        <a href="#top" className="flex items-center gap-2 font-display text-sm font-bold tracking-tight">
+        <Magnetic as="a" href="#top" strength={0.35} className="flex items-center gap-2 font-display text-sm font-bold tracking-tight">
           <span className="grid h-7 w-7 place-items-center rounded-md bg-foreground text-[10px] font-bold text-background">KM</span>
           <span className="hidden sm:inline">Krishna Mishra</span>
-        </a>
+        </Magnetic>
         <nav
           className={`hidden items-center gap-1 rounded-full px-2 py-1.5 text-sm transition-all md:flex ${
             scrolled ? "glass-panel" : "border border-transparent"
           }`}
         >
           {links.map((l) => (
-            <a
+            <Magnetic
               key={l.href}
+              as="a"
               href={l.href}
-              className="rounded-full px-3.5 py-1.5 text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+              strength={0.45}
+              radius={80}
+              className="inline-block rounded-full px-3.5 py-1.5 text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
             >
               {l.label}
-            </a>
+            </Magnetic>
           ))}
         </nav>
-        <a
+        <Magnetic
+          as="a"
           href="#contact"
-          className="rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background transition-transform hover:scale-[1.02] active:scale-95 sm:text-sm"
+          strength={0.4}
+          className="inline-block rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background sm:text-sm"
         >
           Hire me
-        </a>
+        </Magnetic>
       </div>
     </header>
   );
