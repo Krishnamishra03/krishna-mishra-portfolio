@@ -18,7 +18,7 @@ import { Assistant } from "./Assistant";
 
 export function Portfolio() {
   return (
-    <div className="relative min-h-screen overflow-x-clip bg-background text-foreground">
+    <div className="relative min-h-screen overflow-x-clip bg-background text-foreground mesh-bg">
       <Loader />
       <Cursor />
       <Nav />
