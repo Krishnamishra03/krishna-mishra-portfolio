@@ -10,6 +10,7 @@ import { Terminal } from "./Terminal";
 import { Experience } from "./Experience";
 import { GitHub } from "./GitHub";
 import { Testimonials } from "./Testimonials";
+import { Certificates } from "./Certificates";
 import { Contact } from "./Contact";
 import { Footer } from "./Footer";
 import { Loader } from "./Loader";
@@ -33,6 +34,7 @@ export function Portfolio() {
         <Terminal />
         <Experience />
         <GitHub />
+        <Certificates />
         <Testimonials />
         <Contact />
       </main>
