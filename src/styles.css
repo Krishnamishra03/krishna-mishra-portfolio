@@ -241,6 +241,11 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.9); }
+  50% { opacity: 0.9; transform: scale(1.2); }
+}
+
 .cursor-ring { transition: width .2s, height .2s, background .2s; }
 .cursor-ring--hot { width: 56px; height: 56px; background: oklch(1 0 0 / 0.08); }
 .cursor-ring--mag { width: 72px; height: 72px; background: oklch(1 0 0 / 0.10); border-color: var(--aurora); }
