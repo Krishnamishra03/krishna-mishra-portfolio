@@ -16,7 +16,6 @@ export function Magnetic<T extends ElementType = "div">({
 }: MagneticProps<T>) {
   const Tag = (as || "div") as ElementType;
   const ref = useRef<HTMLElement | null>(null);
-  const innerRef = useRef<HTMLSpanElement>(null);
   const raf = useRef(0);
 
   const onMove = (e: React.MouseEvent) => {
@@ -34,7 +33,6 @@ export function Magnetic<T extends ElementType = "div">({
     cancelAnimationFrame(raf.current);
     raf.current = requestAnimationFrame(() => {
       el.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
-      if (innerRef.current) innerRef.current.style.transform = `translate3d(${tx * 0.35}px, ${ty * 0.35}px, 0)`;
     });
   };
 
@@ -44,13 +42,8 @@ export function Magnetic<T extends ElementType = "div">({
     cancelAnimationFrame(raf.current);
     el.style.transition = "transform .55s cubic-bezier(.22,1,.36,1)";
     el.style.transform = "translate3d(0,0,0)";
-    if (innerRef.current) {
-      innerRef.current.style.transition = "transform .55s cubic-bezier(.22,1,.36,1)";
-      innerRef.current.style.transform = "translate3d(0,0,0)";
-    }
     setTimeout(() => {
       if (el) el.style.transition = "";
-      if (innerRef.current) innerRef.current.style.transition = "";
     }, 560);
   };
 
@@ -60,12 +53,10 @@ export function Magnetic<T extends ElementType = "div">({
       data-magnetic=""
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      style={{ display: "inline-flex", willChange: "transform" }}
+      style={{ willChange: "transform" }}
       {...rest}
     >
-      <span ref={innerRef} style={{ display: "inline-flex", alignItems: "center", gap: "inherit", willChange: "transform" }}>
-        {children}
-      </span>
+      {children}
     </Tag>
   );
 }
