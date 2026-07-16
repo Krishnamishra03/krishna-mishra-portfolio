@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { SectionHeader } from "./Section";
 
 type Node = {
@@ -10,26 +10,33 @@ type Node = {
   color: string;
   glow?: boolean;
   size?: "sm" | "md";
+  category: string;
+  proficiency: number; // 0-100
+  years: number;
+  tagline: string;
+  description: string;
+  docs: string;
 };
 
 const nodes: Node[] = [
-  { name: "REACT", x: -140, y: -140, z: 60, color: "oklch(0.85 0.15 200)", glow: true },
-  { name: "NEXT.JS", x: 140, y: -140, z: 70, color: "oklch(0.95 0.02 260)", glow: true },
-  { name: "TS", x: -140, y: 140, z: 45, color: "oklch(0.75 0.15 250)" },
-  { name: "NODE", x: 140, y: 140, z: 80, color: "oklch(0.82 0.18 150)", glow: true },
-  { name: "MONGO", x: -240, y: 0, z: 30, color: "oklch(0.78 0.16 150)" },
-  { name: "GRAPHQL", x: 240, y: 0, z: 35, color: "oklch(0.72 0.21 320)" },
-  { name: "RN", x: 0, y: -260, z: 55, color: "oklch(0.78 0.18 300)", glow: true },
-  { name: "FIREBASE", x: 0, y: 260, z: 25, color: "oklch(0.84 0.15 80)" },
-  { name: "DOCKER", x: -260, y: -260, z: 20, color: "oklch(0.8 0.14 220)", size: "sm" },
-  { name: "GITHUB", x: 260, y: 260, z: 20, color: "oklch(0.75 0.02 260)", size: "sm" },
-  { name: "TAILWIND", x: 260, y: -260, z: 20, color: "oklch(0.82 0.15 200)", size: "sm" },
-  { name: "EXPRESS", x: -260, y: 260, z: 20, color: "oklch(0.78 0.14 140)", size: "sm" },
+  { name: "REACT", x: -140, y: -140, z: 60, color: "oklch(0.85 0.15 200)", glow: true, category: "Frontend", proficiency: 95, years: 4, tagline: "Declarative UI library", description: "Composable component architecture powering every product I ship, from marketing sites to complex dashboards.", docs: "https://react.dev" },
+  { name: "NEXT.JS", x: 140, y: -140, z: 70, color: "oklch(0.95 0.02 260)", glow: true, category: "Framework", proficiency: 92, years: 3, tagline: "Full-stack React framework", description: "App router, server components, ISR — my default for shipping production-grade web apps.", docs: "https://nextjs.org" },
+  { name: "TS", x: -140, y: 140, z: 45, color: "oklch(0.75 0.15 250)", category: "Language", proficiency: 94, years: 4, tagline: "Typed JavaScript at scale", description: "Strict types across UI, API and shared contracts to keep large codebases safe and refactorable.", docs: "https://www.typescriptlang.org" },
+  { name: "NODE", x: 140, y: 140, z: 80, color: "oklch(0.82 0.18 150)", glow: true, category: "Runtime", proficiency: 90, years: 4, tagline: "JavaScript runtime", description: "REST and streaming APIs, background workers and CLIs across MERN and edge deployments.", docs: "https://nodejs.org" },
+  { name: "MONGO", x: -240, y: 0, z: 30, color: "oklch(0.78 0.16 150)", category: "Database", proficiency: 85, years: 3, tagline: "Document database", description: "Schema-flexible data modeling with aggregation pipelines and Atlas search for MERN products.", docs: "https://www.mongodb.com" },
+  { name: "GRAPHQL", x: 240, y: 0, z: 35, color: "oklch(0.72 0.21 320)", category: "API", proficiency: 82, years: 2, tagline: "Typed API query layer", description: "Federated schemas, code-generated hooks and precise data fetching for complex UIs.", docs: "https://graphql.org" },
+  { name: "RN", x: 0, y: -260, z: 55, color: "oklch(0.78 0.18 300)", glow: true, category: "Mobile", proficiency: 88, years: 3, tagline: "React Native", description: "Cross-platform iOS + Android apps with native modules, Reanimated and the new architecture.", docs: "https://reactnative.dev" },
+  { name: "FIREBASE", x: 0, y: 260, z: 25, color: "oklch(0.84 0.15 80)", category: "Backend", proficiency: 84, years: 3, tagline: "App backend platform", description: "Auth, Firestore, Cloud Functions and FCM for realtime mobile and web experiences.", docs: "https://firebase.google.com" },
+  { name: "DOCKER", x: -260, y: -260, z: 20, color: "oklch(0.8 0.14 220)", size: "sm", category: "DevOps", proficiency: 78, years: 2, tagline: "Container runtime", description: "Reproducible dev environments and multi-stage builds shipped through CI/CD pipelines.", docs: "https://www.docker.com" },
+  { name: "GITHUB", x: 260, y: 260, z: 20, color: "oklch(0.75 0.02 260)", size: "sm", category: "Tooling", proficiency: 96, years: 5, tagline: "Source + Actions", description: "PR-driven workflows, GitHub Actions pipelines, releases and package publishing.", docs: "https://github.com" },
+  { name: "TAILWIND", x: 260, y: -260, z: 20, color: "oklch(0.82 0.15 200)", size: "sm", category: "Styling", proficiency: 95, years: 3, tagline: "Utility-first CSS", description: "Design-token driven styling with custom themes, animations and glassmorphic systems.", docs: "https://tailwindcss.com" },
+  { name: "EXPRESS", x: -260, y: 260, z: 20, color: "oklch(0.78 0.14 140)", size: "sm", category: "Backend", proficiency: 86, years: 4, tagline: "Node.js web framework", description: "REST endpoints, auth middleware and modular service layers for MERN stack APIs.", docs: "https://expressjs.com" },
 ];
 
 export function Universe() {
   const ref = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState<Node | null>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const lift = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
@@ -46,6 +53,18 @@ export function Universe() {
     el.addEventListener("mousemove", on);
     return () => el.removeEventListener("mousemove", on);
   }, []);
+
+  useEffect(() => {
+    if (!active) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActive(null);
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [active]);
 
   return (
     <section id="universe" ref={ref} className="relative overflow-hidden px-6 py-32">
@@ -173,9 +192,12 @@ export function Universe() {
               {nodes.map((n) => {
                 const s = n.size === "sm" ? 64 : 80;
                 return (
-                  <div
+                  <button
+                    type="button"
                     key={n.name}
-                    className="group absolute left-1/2 top-1/2 grid place-items-center rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md transition-all duration-300 hover:bg-white/[0.1]"
+                    onClick={() => setActive(n)}
+                    aria-label={`Open ${n.name} details`}
+                    className="group absolute left-1/2 top-1/2 grid place-items-center rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:border-white/40 hover:bg-white/[0.12] focus:outline-none focus-visible:ring-2 focus-visible:ring-aurora cursor-pointer"
                     data-cursor
                     style={{
                       width: s,
@@ -201,7 +223,13 @@ export function Universe() {
                       className="pointer-events-none absolute left-1/2 top-full w-px -translate-x-1/2 bg-gradient-to-b from-white/20 to-transparent"
                       style={{ height: n.z }}
                     />
-                  </div>
+                    {/* hover tooltip */}
+                    <span
+                      className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-black/60 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-white/80 opacity-0 backdrop-blur-md transition-opacity duration-200 group-hover:opacity-100"
+                    >
+                      {n.category} · {n.proficiency}%
+                    </span>
+                  </button>
                 );
               })}
             </div>
@@ -258,7 +286,132 @@ export function Universe() {
           </div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {active && <NodeModal node={active} onClose={() => setActive(null)} />}
+      </AnimatePresence>
     </section>
+  );
+}
+
+function NodeModal({ node, onClose }: { node: Node; onClose: () => void }) {
+  return (
+    <motion.div
+      className="fixed inset-0 z-[80] grid place-items-center px-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.div
+        className="absolute inset-0 bg-black/60 backdrop-blur-xl"
+        onClick={onClose}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      />
+      <motion.div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${node.name} details`}
+        initial={{ opacity: 0, scale: 0.92, y: 24 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 12 }}
+        transition={{ type: "spring", stiffness: 260, damping: 26 }}
+        className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-8 shadow-[0_30px_120px_-20px_rgba(0,0,0,0.8)] backdrop-blur-2xl"
+        style={{
+          backgroundImage: `radial-gradient(circle at top left, ${node.color.replace(")", " / 0.18)")}, transparent 60%)`,
+        }}
+      >
+        <div
+          className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full blur-3xl"
+          style={{ background: node.color.replace(")", " / 0.35)") }}
+        />
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-foreground/80 transition hover:bg-white/[0.12]"
+        >
+          ✕
+        </button>
+
+        <div className="relative">
+          <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/60">
+            <span
+              className="h-1.5 w-1.5 rounded-full"
+              style={{ background: node.color, boxShadow: `0 0 10px ${node.color}` }}
+            />
+            {node.category}
+          </div>
+          <h3
+            className="mt-3 font-display text-4xl font-bold tracking-tight"
+            style={{ color: node.color }}
+          >
+            {node.name}
+          </h3>
+          <p className="mt-1 text-sm text-foreground/70">{node.tagline}</p>
+
+          <p className="mt-6 text-sm leading-relaxed text-foreground/80">
+            {node.description}
+          </p>
+
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            <Stat label="Proficiency" value={`${node.proficiency}%`} color={node.color} />
+            <Stat label="Experience" value={`${node.years}+ yrs`} color={node.color} />
+          </div>
+
+          <div className="mt-4">
+            <div className="mb-1.5 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-foreground/50">
+              <span>Mastery</span>
+              <span>{node.proficiency}/100</span>
+            </div>
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+              <motion.div
+                className="h-full rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${node.proficiency}%` }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
+                style={{ background: node.color, boxShadow: `0 0 12px ${node.color}` }}
+              />
+            </div>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a
+              href={node.docs}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-magnetic
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-foreground transition hover:bg-white/[0.14]"
+            >
+              Official docs
+              <span aria-hidden>↗</span>
+            </a>
+            <a
+              href="#projects"
+              onClick={onClose}
+              data-magnetic
+              className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-background"
+              style={{ background: node.color }}
+            >
+              See projects using {node.name}
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function Stat({ label, value, color }: { label: string; value: string; color: string }) {
+  return (
+    <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
+      <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-foreground/50">
+        {label}
+      </div>
+      <div className="mt-1 font-display text-xl font-semibold" style={{ color }}>
+        {value}
+      </div>
+    </div>
   );
 }
 
