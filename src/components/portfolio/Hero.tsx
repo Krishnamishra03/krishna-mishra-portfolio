@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import heroObjects from "@/assets/hero-objects.jpg";
 import { Magnetic } from "./Magnetic";
+import heroPhoto from "@/assets/hero-photo.jpg";
 
 const typing = [
   "MERN Stack",
