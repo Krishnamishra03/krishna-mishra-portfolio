@@ -214,30 +214,66 @@ export function Hero() {
             as="a"
             href="#work"
             strength={0.4}
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-foreground px-7 py-3.5 text-sm font-semibold text-background shadow-[0_0_30px_oklch(1_0_0/0.15)] transition-colors"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-foreground px-7 py-3.5 text-sm font-semibold text-background shadow-[0_0_30px_oklch(1_0_0/0.15)] transition-all duration-500 hover:shadow-[0_0_50px_oklch(1_0_0/0.35)] active:scale-[0.97]"
           >
-            <span className="relative z-10">View Projects</span>
-            <span className="relative z-10 transition-transform group-hover:translate-x-0.5">→</span>
+            {/* aurora sweep on hover */}
+            <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent_20%,oklch(0.85_0.15_270/0.5)_45%,oklch(0.9_0.12_180/0.5)_55%,transparent_80%)] transition-transform duration-[900ms] ease-out group-hover:translate-x-full" />
+            {/* animated arrow track */}
+            <span className="relative z-10 overflow-hidden">
+              <span className="block transition-transform duration-500 group-hover:-translate-y-full">View Projects</span>
+              <span className="absolute inset-0 block translate-y-full transition-transform duration-500 group-hover:translate-y-0 text-aurora">View Projects</span>
+            </span>
+            <span className="relative z-10 flex h-4 w-4 items-center overflow-hidden">
+              <span className="flex -translate-x-4 transition-transform duration-500 group-hover:translate-x-0">
+                <span className="w-4 shrink-0 text-center">→</span>
+                <span className="w-4 shrink-0 text-center">→</span>
+              </span>
+            </span>
           </Magnetic>
           <Magnetic
             as="a"
             href="#"
             strength={0.35}
-            className="glass-panel inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-white/[0.06]"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl px-7 py-3.5 text-sm font-semibold text-foreground glass-panel transition-all duration-500 hover:bg-white/[0.08] hover:ring-white/25 active:scale-[0.97]"
           >
-            Download Résumé
-            <svg className="h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
+            {/* animated conic border on hover */}
+            <span className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 [background:conic-gradient(from_0deg,oklch(0.75_0.18_270),oklch(0.85_0.15_150),oklch(0.8_0.15_200),oklch(0.75_0.18_270))] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] [mask-composite:exclude] [padding:1px] animate-[spin_4s_linear_infinite]" />
+            <span className="relative z-10">Download Résumé</span>
+            <span className="relative z-10 flex h-4 w-4 items-center justify-center overflow-hidden">
+              <svg
+                className="h-4 w-4 text-muted-foreground transition-all duration-500 group-hover:-translate-y-6 group-hover:opacity-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              <svg
+                className="absolute h-4 w-4 translate-y-6 text-aurora transition-all duration-500 group-hover:translate-y-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+            </span>
           </Magnetic>
           <Magnetic
             as="a"
             href="#contact"
             strength={0.3}
-            className="group inline-flex items-center gap-2 rounded-xl px-5 py-3.5 text-sm font-medium text-muted-foreground transition-colors hover:text-aurora"
+            className="group relative inline-flex items-center gap-2 rounded-xl px-5 py-3.5 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-aurora active:scale-[0.97]"
           >
-            Hire me
-            <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+            <span className="relative">
+              Hire me
+              <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-aurora via-violet-400 to-emerald-400 transition-transform duration-500 group-hover:scale-x-100" />
+            </span>
+            <span className="relative flex h-4 w-4 items-center overflow-hidden">
+              <span className="flex -translate-x-4 transition-transform duration-500 group-hover:translate-x-0">
+                <span className="w-4 shrink-0 text-center">→</span>
+                <span className="w-4 shrink-0 text-center">→</span>
+              </span>
+            </span>
           </Magnetic>
         </motion.div>
 
