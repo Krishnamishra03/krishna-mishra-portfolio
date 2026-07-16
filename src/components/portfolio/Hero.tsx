@@ -80,10 +80,33 @@ export function Hero() {
       </motion.div>
 
       <div className="relative mx-auto flex max-w-6xl flex-col items-center px-6 pt-12 text-center md:pt-20">
+        {/* Hero photo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mb-10"
+        >
+          <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-aurora via-violet-400 to-emerald-400 opacity-60 blur-lg animate-aurora" />
+          <div className="relative h-36 w-36 overflow-hidden rounded-full p-[2px] ring-1 ring-white/10 md:h-44 md:w-44">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-aurora via-violet-400 to-emerald-400 opacity-80" />
+            <img
+              src={heroPhoto}
+              alt="Krishna Mishra"
+              width={400}
+              height={400}
+              className="relative h-full w-full rounded-full object-cover"
+            />
+          </div>
+          <span className="absolute bottom-1 right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-background bg-emerald-400 md:bottom-2 md:right-2">
+            <span className="h-2 w-2 rounded-full bg-background" />
+          </span>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="mb-10 inline-flex items-center gap-2.5 rounded-full px-3.5 py-1.5 text-xs glass-panel ring-1 ring-emerald-400/20"
         >
           <span className="relative flex h-2 w-2">
