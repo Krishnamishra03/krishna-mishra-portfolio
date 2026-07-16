@@ -87,9 +87,16 @@ export function Hero() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="relative mb-10"
         >
-          <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-aurora via-violet-400 to-emerald-400 opacity-60 blur-lg animate-aurora" />
-          <div className="relative h-36 w-36 overflow-hidden rounded-full p-[2px] ring-1 ring-white/10 md:h-44 md:w-44">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-aurora via-violet-400 to-emerald-400 opacity-80" />
+          {/* outer glow */}
+          <div className="absolute -inset-6 rounded-full bg-[conic-gradient(from_0deg,oklch(0.75_0.18_270),oklch(0.8_0.15_200),oklch(0.85_0.15_150),oklch(0.75_0.18_270))] opacity-40 blur-2xl animate-[spin_14s_linear_infinite]" />
+          {/* rotating conic ring */}
+          <div className="absolute -inset-[3px] rounded-full bg-[conic-gradient(from_0deg,transparent_0deg,oklch(0.85_0.15_270)_60deg,transparent_140deg,oklch(0.85_0.15_150)_220deg,transparent_320deg)] animate-[spin_9s_linear_infinite]" />
+          {/* counter-rotating dashed ring */}
+          <div
+            className="absolute -inset-4 rounded-full border border-dashed border-white/15 animate-[spin_28s_linear_infinite_reverse]"
+            style={{ maskImage: "radial-gradient(circle, black 60%, transparent 100%)" }}
+          />
+          <div className="relative h-40 w-40 overflow-hidden rounded-full ring-1 ring-white/15 md:h-48 md:w-48">
             <img
               src={heroPhoto}
               alt="Krishna Mishra"
@@ -97,10 +104,44 @@ export function Hero() {
               height={400}
               className="relative h-full w-full rounded-full object-cover"
             />
+            <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-background/60 via-transparent to-transparent" />
           </div>
-          <span className="absolute bottom-1 right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-background bg-emerald-400 md:bottom-2 md:right-2">
-            <span className="h-2 w-2 rounded-full bg-background" />
+          {/* online pill */}
+          <span className="absolute -bottom-1 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-background/80 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-emerald-300 ring-1 ring-emerald-400/30 backdrop-blur">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            </span>
+            Online
           </span>
+          {/* floating stat chips */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="absolute -left-28 top-4 hidden rounded-xl px-3 py-2 text-left glass-panel md:block float-y"
+          >
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Experience</div>
+            <div className="font-display text-sm font-semibold text-aurora">3+ Years</div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="absolute -right-28 top-10 hidden rounded-xl px-3 py-2 text-left glass-panel md:block float-y [animation-delay:-3s]"
+          >
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Projects</div>
+            <div className="font-display text-sm font-semibold text-aurora">40+ Shipped</div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+            className="absolute -right-24 bottom-2 hidden rounded-xl px-3 py-2 text-left glass-panel md:block float-y [animation-delay:-6s]"
+          >
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Stack</div>
+            <div className="font-display text-sm font-semibold text-aurora">MERN · RN</div>
+          </motion.div>
         </motion.div>
 
         <motion.div
