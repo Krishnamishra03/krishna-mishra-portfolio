@@ -128,6 +128,22 @@ export function Universe() {
           align="center"
         />
 
+        {/* shooting stars */}
+        <div className="pointer-events-none absolute inset-0 -z-[5] overflow-hidden">
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="absolute h-px w-24 bg-gradient-to-r from-transparent via-aurora to-transparent"
+              style={{
+                top: `${20 + i * 25}%`,
+                left: "-10%",
+                animation: `shoot 9s ease-in ${i * 3.5}s infinite`,
+                filter: "drop-shadow(0 0 6px oklch(0.85 0.15 200 / 0.8))",
+              }}
+            />
+          ))}
+        </div>
+
         <div className="relative mt-8 grid items-center gap-8 lg:grid-cols-[1fr_auto_1fr]">
           {/* Left HUD */}
           <div className="hidden flex-col gap-3 lg:flex">
@@ -144,6 +160,28 @@ export function Universe() {
             {/* aurora bloom */}
             <div className="pointer-events-none absolute inset-0 grid place-items-center">
               <div className="h-[420px] w-[420px] rounded-full bg-aurora/15 blur-[120px] animate-aurora" />
+            </div>
+
+            {/* radar sweep */}
+            <div className="pointer-events-none absolute inset-0 grid place-items-center">
+              <div
+                className="h-[640px] w-[640px] rounded-full opacity-40"
+                style={{
+                  background:
+                    "conic-gradient(from 0deg, transparent 0deg, oklch(0.85 0.15 200 / 0.35) 30deg, transparent 60deg)",
+                  WebkitMask: "radial-gradient(circle, transparent 40%, #000 41%, #000 100%)",
+                  mask: "radial-gradient(circle, transparent 40%, #000 41%, #000 100%)",
+                  animation: "spin 12s linear infinite",
+                }}
+              />
+            </div>
+
+            {/* cross reticle */}
+            <div className="pointer-events-none absolute inset-0 grid place-items-center opacity-30">
+              <div className="h-full w-px bg-gradient-to-b from-transparent via-aurora/40 to-transparent" />
+            </div>
+            <div className="pointer-events-none absolute inset-0 grid place-items-center opacity-30">
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-aurora/40 to-transparent" />
             </div>
 
             {/* layered rings */}
@@ -257,6 +295,16 @@ export function Universe() {
 
             {/* HUD ticks */}
             <Corners />
+
+            {/* coordinate readout */}
+            <div className="pointer-events-none absolute left-2 top-2 font-mono text-[9px] uppercase tracking-[0.24em] text-muted-foreground/80">
+              <div>SYS · KM-CORE</div>
+              <div className="text-aurora/80">28.61° N / 77.20° E</div>
+            </div>
+            <div className="pointer-events-none absolute bottom-2 right-2 text-right font-mono text-[9px] uppercase tracking-[0.24em] text-muted-foreground/80">
+              <div>SIGNAL · STABLE</div>
+              <div className="text-emerald-400/90">◉ REC 00:{new Date().getMinutes().toString().padStart(2, "0")}:12</div>
+            </div>
           </motion.div>
 
           {/* Right HUD */}
@@ -264,6 +312,42 @@ export function Universe() {
             <HudCard label="Projects shipped" value="40+" sub="web · mobile · ai" dot={catColor.mobile} align="right" />
             <HudCard label="Uptime SLA" value="99.98%" sub="last 12 months" dot={catColor.backend} align="right" />
             <HudCard label="Frameworks" value="React · RN · Next" sub="primary toolkit" dot={catColor.frontend} align="right" />
+          </div>
+        </div>
+
+        {/* Telemetry ticker */}
+        <div className="relative mt-12 overflow-hidden rounded-2xl glass-panel">
+          <div className="flex items-center gap-8 whitespace-nowrap px-6 py-3 font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground [animation:ticker_40s_linear_infinite]">
+            {[
+              "◉ TypeScript · 98%",
+              "◉ React · 96%",
+              "◉ Node.js · 92%",
+              "◉ React Native · 90%",
+              "◉ MongoDB · 88%",
+              "◉ Next.js · 94%",
+              "◉ Firebase · 86%",
+              "◉ Docker · 82%",
+              "◉ GraphQL · 80%",
+              "◉ Tailwind · 97%",
+            ]
+              .concat([
+                "◉ TypeScript · 98%",
+                "◉ React · 96%",
+                "◉ Node.js · 92%",
+                "◉ React Native · 90%",
+                "◉ MongoDB · 88%",
+                "◉ Next.js · 94%",
+                "◉ Firebase · 86%",
+                "◉ Docker · 82%",
+                "◉ GraphQL · 80%",
+                "◉ Tailwind · 97%",
+              ])
+              .map((t, i) => (
+                <span key={i} className="text-foreground/70">
+                  <span className="text-aurora">{t.slice(0, 2)}</span>
+                  {t.slice(2)}
+                </span>
+              ))}
           </div>
         </div>
       </div>
