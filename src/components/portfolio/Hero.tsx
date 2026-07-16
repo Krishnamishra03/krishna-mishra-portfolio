@@ -87,6 +87,9 @@ export function Hero() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="relative mb-10"
         >
+          {/* ambient portrait backdrop */}
+          <div className="absolute left-1/2 top-1/2 h-[115%] w-[115%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_40%_40%,oklch(0.22_0.04_270)_0%,oklch(0.12_0.03_270)_45%,transparent_75%)] opacity-80" />
+          <div className="absolute left-1/2 top-1/2 h-[130%] w-[130%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_60%_30%,oklch(0.7_0.12_270/0.18)_0%,oklch(0.6_0.1_200/0.1)_35%,transparent_65%)] blur-2xl" />
           {/* outer glow */}
           <div className="absolute -inset-6 rounded-full bg-[conic-gradient(from_0deg,oklch(0.75_0.18_270),oklch(0.8_0.15_200),oklch(0.85_0.15_150),oklch(0.75_0.18_270))] opacity-40 blur-2xl animate-[spin_14s_linear_infinite]" />
           {/* rotating conic ring */}
@@ -96,7 +99,7 @@ export function Hero() {
             className="absolute -inset-4 rounded-full border border-dashed border-white/15 animate-[spin_28s_linear_infinite_reverse]"
             style={{ maskImage: "radial-gradient(circle, black 60%, transparent 100%)" }}
           />
-          <div className="relative h-40 w-40 overflow-hidden rounded-full ring-1 ring-white/15 md:h-48 md:w-48">
+          <div className="relative h-44 w-44 overflow-hidden rounded-full bg-gradient-to-b from-white/[0.03] to-transparent ring-1 ring-white/15 shadow-[0_0_60px_-10px_oklch(0.65_0.1_270/0.35)] md:h-52 md:w-52">
             <img
               src={heroPhoto}
               alt="Krishna Mishra"
@@ -104,7 +107,7 @@ export function Hero() {
               height={400}
               className="relative h-full w-full rounded-full object-cover"
             />
-            <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+            <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-background/70 via-transparent to-transparent" />
           </div>
           {/* online pill */}
           <span className="absolute -bottom-1 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-background/80 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-emerald-300 ring-1 ring-emerald-400/30 backdrop-blur">
