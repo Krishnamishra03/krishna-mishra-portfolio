@@ -99,15 +99,16 @@ export function Hero() {
             className="absolute -inset-4 rounded-full border border-dashed border-white/15 animate-[spin_28s_linear_infinite_reverse]"
             style={{ maskImage: "radial-gradient(circle, black 60%, transparent 100%)" }}
           />
-          <div className="relative h-44 w-44 overflow-hidden rounded-full bg-gradient-to-b from-white/[0.03] to-transparent ring-1 ring-white/15 shadow-[0_0_60px_-10px_oklch(0.65_0.1_270/0.35)] md:h-52 md:w-52">
+          <div className="relative h-44 w-44 overflow-hidden rounded-full bg-[radial-gradient(circle_at_50%_25%,oklch(0.26_0.03_270)_0%,oklch(0.15_0.02_270)_55%,oklch(0.10_0.01_270)_100%)] ring-1 ring-white/15 shadow-[0_0_60px_-10px_oklch(0.65_0.1_270/0.35)] md:h-52 md:w-52">
             <img
               src={heroPhoto}
               alt="Krishna Mishra"
-              width={400}
-              height={400}
-              className="relative h-full w-full rounded-full object-cover"
+              width={800}
+              height={800}
+              className="relative h-full w-full scale-[1.06] rounded-full object-cover object-[50%_12%]"
             />
-            <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+            <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+            <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/10" />
           </div>
           {/* online pill */}
           <span className="absolute -bottom-1 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-background/80 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-emerald-300 ring-1 ring-emerald-400/30 backdrop-blur">
