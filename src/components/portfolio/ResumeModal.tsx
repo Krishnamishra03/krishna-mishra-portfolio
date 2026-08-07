@@ -9,6 +9,7 @@ export function ResumeModal({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const absoluteUrl = useMemo(() => {
     if (typeof window === "undefined") return resumeAsset.url;
@@ -24,14 +25,25 @@ export function ResumeModal({ children }: { children: React.ReactNode }) {
       setViewer("native");
       setLoading(true);
       setError(false);
+
+      // Auto-fallback to Google Docs viewer if native PDF viewer doesn't load
+      timeoutRef.current = setTimeout(() => {
+        setLoading(true);
+        setViewer("google");
+      }, 3500);
     }
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, [open]);
 
   const handleLoad = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setLoading(false);
   };
 
   const handleError = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     if (viewer === "native") {
       setLoading(true);
       setViewer("google");
