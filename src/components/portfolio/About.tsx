@@ -107,7 +107,7 @@ export function About() {
             },
             {
               t: "Education",
-              d: "Computer Science, with focused study in distributed systems, ML, and HCI.",
+              d: "Bachelor of Technology (B.Tech) in Computer Science & Engineering — building a strong foundation in Artificial Intelligence & Machine Learning (AI/ML), Software Engineering, Full-Stack Development, Cloud Computing, and scalable system design through academic learning and real-world projects.",
             },
             {
               t: "Philosophy",
