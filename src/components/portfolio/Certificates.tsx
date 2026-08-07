@@ -264,7 +264,9 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
             <img
               src={cert.image}
               alt={`${cert.title} certificate`}
-              className="relative h-full w-full rounded-2xl object-cover"
+              className={`relative h-full w-full rounded-2xl ${
+                cert.issuer === "Cisco" ? "object-contain p-6" : "object-cover"
+              }`}
               loading="lazy"
             />
           ) : (
