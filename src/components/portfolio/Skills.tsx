@@ -42,9 +42,10 @@ const groups: { title: string; items: { name: string; level: number }[] }[] = [
   {
     title: "Cloud",
     items: [
+      { name: "AWS S3", level: 84 },
+      { name: "Microsoft Azure", level: 78 },
       { name: "Firebase", level: 86 },
       { name: "Vercel", level: 92 },
-      { name: "Netlify", level: 85 },
     ],
   },
   {
