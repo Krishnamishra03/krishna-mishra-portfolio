@@ -44,7 +44,7 @@ const projects = [
     link: "https://finsight-sparkle.lovable.app/",
   },
   {
-    img: kailora,
+    img: kailoraAsset.url,
     n: "05",
     name: "Kailora Wallpaper",
     tag: "Wallpaper Platform",
