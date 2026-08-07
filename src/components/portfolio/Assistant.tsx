@@ -5,7 +5,7 @@ const prompts: { q: string; a: string }[] = [
   { q: "Who is Krishna?", a: "A Software Engineer focused on full-stack web and mobile — MERN, Next.js, React Native, and AI integrations." },
   { q: "Show projects", a: "Care Connect, Rail-Vision, Gyan AI, Lumen Wallpapers. Scroll to the Work section for the full case studies." },
   { q: "Show skills", a: "Frontend (React/Next/TS), Backend (Node/Express), Mobile (React Native), Databases (Mongo, Firebase), and AI tooling." },
-  { q: "How to contact?", a: "Use the contact form at the bottom, or email hello@krishna.dev — replies within 24h." },
+  { q: "How to contact?", a: "Use the contact form at the bottom, or email krishanamishra913@gmail.com — replies within 24h." },
   { q: "Download resume", a: "Tap the Download Résumé button in the hero, or type `download` in the terminal." },
 ];
 

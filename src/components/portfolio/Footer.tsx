@@ -12,9 +12,9 @@ export function Footer() {
         </div>
         <div className="flex gap-8 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
           <a href="https://github.com/Krishnamishra03" target="_blank" rel="noreferrer noopener" className="hover:text-foreground">GitHub</a>
-          <a href="https://www.linkedin.com/in/krishna-mishra-9a3b4b28b/" target="_blank" rel="noreferrer noopener" className="hover:text-foreground">LinkedIn</a>
-          <a href="https://twitter.com/Thekrishna02" target="_blank" rel="noreferrer noopener" className="hover:text-foreground">Twitter</a>
-          <a href="mailto:hello@krishnamishra.dev" className="hover:text-foreground">Email</a>
+          <a href="https://www.linkedin.com/in/krishna-mishra-4199a3250/" target="_blank" rel="noreferrer noopener" className="hover:text-foreground">LinkedIn</a>
+          <a href="https://x.com/Thekrishna02" target="_blank" rel="noreferrer noopener" className="hover:text-foreground">Twitter</a>
+          <a href="mailto:krishanamishra913@gmail.com" className="hover:text-foreground">Email</a>
         </div>
       </div>
     </footer>
