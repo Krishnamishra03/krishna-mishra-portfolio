@@ -8,65 +8,82 @@ type Cert = {
   id: string;
   skills: string[];
   accent: string;
-  image: string;
   featured?: boolean;
 };
 
 const certs: Cert[] = [
   {
-    title: "Meta Front-End Developer",
-    issuer: "Meta · Coursera",
-    year: "2025",
-    id: "MFE-2K25-014",
-    skills: ["React", "UI Systems", "Accessibility"],
-    accent: "oklch(0.82 0.18 165)",
-    image: "/certs/meta-frontend.jpg",
+    title: "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
+    issuer: "Oracle",
+    year: "Sep 2025",
+    id: "102675378OCI25AICFA",
+    skills: ["AI Foundations", "OCI", "Cloud"],
+    accent: "oklch(0.72 0.19 25)",
     featured: true,
   },
   {
-    title: "AWS Certified Developer — Associate",
-    issuer: "Amazon Web Services",
-    year: "2024",
-    id: "AWS-DEV-A-9821",
-    skills: ["Lambda", "DynamoDB", "S3", "CI/CD"],
+    title: "AWS Educate Introduction to Generative AI",
+    issuer: "Amazon Web Services (AWS)",
+    year: "Sep 2025",
+    id: "AWS-EDU-GENAI",
+    skills: ["Generative AI", "AWS"],
     accent: "oklch(0.84 0.15 80)",
-    image: "/certs/aws-developer.jpg",
   },
   {
-    title: "Google UX Design Professional",
-    issuer: "Google · Coursera",
-    year: "2024",
-    id: "GUX-PRO-4471",
-    skills: ["Research", "Prototyping", "Figma"],
-    accent: "oklch(0.78 0.16 230)",
-    image: "/certs/google-ux.jpg",
-  },
-  {
-    title: "MongoDB Associate Developer",
-    issuer: "MongoDB University",
-    year: "2023",
-    id: "MDB-ADEV-3120",
-    skills: ["Aggregation", "Indexing", "Atlas"],
-    accent: "oklch(0.72 0.21 300)",
-    image: "/certs/mongodb-developer.jpg",
-  },
-  {
-    title: "React Native — The Practical Guide",
-    issuer: "Academind",
-    year: "2023",
-    id: "RN-PR-7765",
-    skills: ["Expo", "Native Modules", "Animations"],
+    title: "Problem Solving",
+    issuer: "HackerRank",
+    year: "Sep 2025",
+    id: "3e9a689d3259",
+    skills: ["Data Structures", "C++", "Algorithms"],
     accent: "oklch(0.82 0.18 165)",
-    image: "/certs/react-native.jpg",
   },
   {
-    title: "Stripe Certified Integration Engineer",
-    issuer: "Stripe",
-    year: "2025",
-    id: "STR-CIE-2208",
-    skills: ["Payments", "Webhooks", "Subscriptions"],
+    title: "SQL (Advanced)",
+    issuer: "HackerRank",
+    year: "Sep 2025",
+    id: "28a1820114ff",
+    skills: ["SQL", "Joins", "Window Functions"],
+    accent: "oklch(0.82 0.18 165)",
+  },
+  {
+    title: "SQL (Basic)",
+    issuer: "HackerRank",
+    year: "Sep 2025",
+    id: "75bdc955035",
+    skills: ["SQL", "Queries"],
+    accent: "oklch(0.82 0.18 165)",
+  },
+  {
+    title: "Python Coder",
+    issuer: "Kaggle",
+    year: "Nov 2025",
+    id: "KAGGLE-PY-CODER",
+    skills: ["Python", "Notebooks"],
     accent: "oklch(0.78 0.16 230)",
-    image: "/certs/stripe-payments.jpg",
+  },
+  {
+    title: "Introduction to Cybersecurity",
+    issuer: "Cisco",
+    year: "May 2025",
+    id: "CISCO-INTRO-CYBER",
+    skills: ["Cybersecurity"],
+    accent: "oklch(0.72 0.21 300)",
+  },
+  {
+    title: "Python Essentials 2",
+    issuer: "Cisco",
+    year: "Apr 2025",
+    id: "CISCO-PY-ESS-2",
+    skills: ["Iterators", "Python", "OOP"],
+    accent: "oklch(0.78 0.16 230)",
+  },
+  {
+    title: "Python Essentials 1",
+    issuer: "Cisco",
+    year: "Nov 2024",
+    id: "CISCO-PY-ESS-1",
+    skills: ["Computer Programming", "Python"],
+    accent: "oklch(0.78 0.16 230)",
   },
 ];
 
@@ -100,7 +117,7 @@ export function Certificates() {
           />
           <div className="hidden items-center gap-3 pb-14 md:flex">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-              Issued · 2023 → 2025
+              Issued · 2024 → 2025
             </span>
             <span className="h-px w-16 bg-gradient-to-r from-aurora to-transparent" />
           </div>
