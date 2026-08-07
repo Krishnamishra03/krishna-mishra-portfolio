@@ -8,14 +8,14 @@ export function ResumeModal({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <button
-        type="button"
+      <div
         onClick={() => setOpen(true)}
-        className="contents"
-        data-magnetic
+        className="inline-flex cursor-pointer"
+        role="button"
+        aria-label="Open résumé preview"
       >
         {children}
-      </button>
+      </div>
 
       <AnimatePresence>
         {open && (
