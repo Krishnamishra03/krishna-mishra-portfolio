@@ -3,7 +3,7 @@ import { SectionHeader } from "./Section";
 import railGps from "@/assets/project-railgps-tracker.jpg";
 import eduFeedback from "@/assets/project-edufeedback.jpg";
 import careConnect from "@/assets/project-care-connect-new.jpg";
-import finSight from "@/assets/project-finsight.jpg";
+import finSightAsset from "@/assets/finsight-ai.png.asset.json";
 import kailoraAsset from "@/assets/kailora-wallpaper.png.asset.json";
 
 const projects = [
