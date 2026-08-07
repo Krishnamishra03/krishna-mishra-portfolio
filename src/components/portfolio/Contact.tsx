@@ -26,13 +26,13 @@ export function Contact() {
                 I take on a small number of projects each quarter. Tell me what you&apos;re building — I usually reply within a day.
               </p>
               <div className="space-y-3 pt-4">
-                <a href="mailto:hello@krishnamishra.dev" className="block font-display text-lg underline decoration-border underline-offset-8 transition-all hover:decoration-foreground">
-                  hello@krishnamishra.dev
+                <a href="mailto:krishanamishra913@gmail.com" className="block font-display text-lg underline decoration-border underline-offset-8 transition-all hover:decoration-foreground">
+                  krishanamishra913@gmail.com
                 </a>
                 <div className="flex gap-5 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-                  <a className="hover:text-foreground" href="#">GitHub</a>
-                  <a className="hover:text-foreground" href="#">LinkedIn</a>
-                  <a className="hover:text-foreground" href="#">Instagram</a>
+                  <a className="hover:text-foreground" href="https://github.com/Krishnamishra03" target="_blank" rel="noreferrer noopener">GitHub</a>
+                  <a className="hover:text-foreground" href="https://www.linkedin.com/in/krishna-mishra-4199a3250/" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+                  <a className="hover:text-foreground" href="https://x.com/Thekrishna02" target="_blank" rel="noreferrer noopener">Twitter</a>
                 </div>
               </div>
             </div>

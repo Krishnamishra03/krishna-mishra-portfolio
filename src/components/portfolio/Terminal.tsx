@@ -27,7 +27,7 @@ const responses: Record<string, string[]> = {
   github: ["github.com/Krishnamishra03 · 17 public repos · live stats in the open source section"],
   resume: ["krishna_kumar_mishra_resume.pdf — type `download` to fetch"],
   download: ["initiating download...", `→ ${resumeAsset.url}`],
-  contact: ["mail: hello@krishna.dev", "scroll to #contact to send a message"],
+  contact: ["mail: krishanamishra913@gmail.com", "scroll to #contact to send a message"],
   help: ["available: whoami, skills, projects, experience, github, resume, download, contact, clear"],
 };
 
