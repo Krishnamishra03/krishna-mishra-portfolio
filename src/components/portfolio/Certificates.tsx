@@ -9,6 +9,7 @@ type Cert = {
   skills: string[];
   accent: string;
   featured?: boolean;
+  url: string;
 };
 
 const certs: Cert[] = [
@@ -20,6 +21,7 @@ const certs: Cert[] = [
     skills: ["AI Foundations", "OCI", "Cloud"],
     accent: "oklch(0.72 0.19 25)",
     featured: true,
+    url: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=E67D6A420711F078B2044CC1ED2F986FE1E4E4D6C824B180E797BA93CB92DB59",
   },
   {
     title: "AWS Educate Introduction to Generative AI",
@@ -28,6 +30,7 @@ const certs: Cert[] = [
     id: "AWS-EDU-GENAI",
     skills: ["Generative AI", "AWS"],
     accent: "oklch(0.84 0.15 80)",
+    url: "https://www.credly.com/badges/57a28c94-c56d-45d5-8f3a-fa6e56b6ea09/linked_in_profile",
   },
   {
     title: "Problem Solving",
@@ -36,6 +39,7 @@ const certs: Cert[] = [
     id: "3e9a689d3259",
     skills: ["Data Structures", "C++", "Algorithms"],
     accent: "oklch(0.82 0.18 165)",
+    url: "https://www.hackerrank.com/certificates/3e9a689d3259",
   },
   {
     title: "SQL (Advanced)",
@@ -44,14 +48,16 @@ const certs: Cert[] = [
     id: "28a1820114ff",
     skills: ["SQL", "Joins", "Window Functions"],
     accent: "oklch(0.82 0.18 165)",
+    url: "https://www.hackerrank.com/certificates/28a1820114ff",
   },
   {
     title: "SQL (Basic)",
     issuer: "HackerRank",
     year: "Sep 2025",
-    id: "75bdc955035",
+    id: "a75bdc955035",
     skills: ["SQL", "Queries"],
     accent: "oklch(0.82 0.18 165)",
+    url: "https://www.hackerrank.com/certificates/a75bdc955035",
   },
   {
     title: "Python Coder",
@@ -60,6 +66,7 @@ const certs: Cert[] = [
     id: "KAGGLE-PY-CODER",
     skills: ["Python", "Notebooks"],
     accent: "oklch(0.78 0.16 230)",
+    url: "https://www.kaggle.com/certification/badges/mishrakrishna02/30",
   },
   {
     title: "Introduction to Cybersecurity",
@@ -68,6 +75,7 @@ const certs: Cert[] = [
     id: "CISCO-INTRO-CYBER",
     skills: ["Cybersecurity"],
     accent: "oklch(0.72 0.21 300)",
+    url: "https://www.credly.com/badges/6efe9eb0-f623-4ff3-88a4-031cec364740/linked_in_profile",
   },
   {
     title: "Python Essentials 2",
@@ -76,6 +84,7 @@ const certs: Cert[] = [
     id: "CISCO-PY-ESS-2",
     skills: ["Iterators", "Python", "OOP"],
     accent: "oklch(0.78 0.16 230)",
+    url: "https://www.credly.com/badges/78b5dd06-d87b-4d71-8bb0-1e25dc74a797/linked_in_profile",
   },
   {
     title: "Python Essentials 1",
@@ -84,6 +93,7 @@ const certs: Cert[] = [
     id: "CISCO-PY-ESS-1",
     skills: ["Computer Programming", "Python"],
     accent: "oklch(0.78 0.16 230)",
+    url: "https://www.credly.com/badges/ffab8766-0357-4fc9-98e8-b2a778d614c3/linked_in_profile",
   },
 ];
 
@@ -265,7 +275,9 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
             ID · <span className="text-foreground/90">{cert.id}</span>
           </div>
           <a
-            href="#"
+            href={cert.url}
+            target="_blank"
+            rel="noopener noreferrer"
             data-cursor
             className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/80 transition-colors group-hover:text-aurora"
           >
