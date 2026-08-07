@@ -46,7 +46,7 @@ const projects = [
   {
     img: kailora,
     n: "05",
-    name: "Kailora Labs",
+    name: "Kailora Wallpaper",
     tag: "Wallpaper Platform",
     desc: "Premium wallpaper website with curated 4K collections, category discovery, favorites, and a cinematic dark gallery built for creators.",
     stack: ["React", "Next.js", "CDN", "Stripe"],
