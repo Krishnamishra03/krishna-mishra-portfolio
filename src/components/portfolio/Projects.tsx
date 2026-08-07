@@ -8,13 +8,13 @@ import kailoraAsset from "@/assets/kailora-wallpaper.png.asset.json";
 
 const projects = [
   {
-    img: careConnect,
+    img: careConnectAsset.url,
     n: "01",
     name: "Care Connect",
     tag: "Healthcare Platform",
     desc: "End-to-end healthcare management — doctor appointments, video consultations, and a clinical admin dashboard built for real-world patient care.",
     stack: ["JavaScript", "Node.js", "MongoDB", "WebRTC"],
-    link: "https://github.com/Krishnamishra03/Care-Connect",
+    link: "https://care-connect-ten-alpha.vercel.app/",
   },
   {
     img: railGps,
