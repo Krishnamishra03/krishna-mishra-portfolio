@@ -144,7 +144,7 @@ export function Hero() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="block whitespace-nowrap"
           >
-            <Typewriter text="Hello, I'm" speed={70} loop={false} />{" "}
+            <Typewriter text="Hello, I'm" speed={70} loop={false} startDelay={1100} />{" "}
             <span className="text-aurora">Krishna Mishra.</span>
           </motion.span>
           <motion.span
