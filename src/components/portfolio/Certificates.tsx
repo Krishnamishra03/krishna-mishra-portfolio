@@ -262,12 +262,12 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
         {/* emblem plate */}
         <div
           className="relative mb-5 grid place-items-center overflow-hidden rounded-2xl border border-white/10 bg-black/20"
-          style={{ aspectRatio: "16 / 7" }}
+          style={{ aspectRatio: "16 / 9" }}
         >
           <div
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
-              background: `radial-gradient(ellipse at 30% 20%, ${cert.accent.replace(")", " / 0.22)")}, transparent 65%)`,
+              background: `radial-gradient(ellipse at 50% 50%, ${cert.accent.replace(")", " / 0.22)")}, transparent 65%)`,
             }}
           />
           <div
@@ -279,15 +279,11 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
             }}
           />
           {cert.image ? (
-            <div className="relative flex h-full w-full items-center justify-center p-5">
+            <div className="relative flex h-full w-full items-center justify-center p-4 md:p-6">
               <img
                 src={cert.image}
                 alt={`${cert.title} certificate`}
-                className={`max-w-full rounded-xl object-contain shadow-2xl ${
-                  LOGO_ISSUERS.has(cert.issuer)
-                    ? "mx-auto max-h-[82%] -translate-y-1"
-                    : "max-h-full"
-                }`}
+                className="max-h-[92%] max-w-[92%] object-contain shadow-2xl"
                 loading="lazy"
               />
             </div>
