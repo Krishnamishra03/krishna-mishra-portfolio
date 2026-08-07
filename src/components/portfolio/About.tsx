@@ -29,10 +29,10 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
 }
 
 const stats = [
-  { v: 42, s: "+", label: "Projects shipped" },
-  { v: 18, s: "+", label: "Clients served" },
-  { v: 25, s: "+", label: "Technologies" },
-  { v: 1200, s: "+", label: "GitHub commits" },
+  { v: 20, s: "+", label: "Projects shipped" },
+  { v: 5, s: "+", label: "Clients served" },
+  { v: 15, s: "+", label: "Technologies" },
+  { v: 150, s: "+", label: "GitHub commits" },
 ];
 
 export function About() {
@@ -88,9 +88,7 @@ export function About() {
             },
           ].map((c) => (
             <div key={c.t} className="border-l border-border pl-6">
-              <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.25em] text-aurora">
-                {c.t}
-              </div>
+              <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.25em] text-aurora">{c.t}</div>
               <p className="text-pretty text-muted-foreground">{c.d}</p>
             </div>
           ))}
