@@ -106,7 +106,7 @@ const certs: Cert[] = [
     skills: ["Teamwork", "Problem Solving", "Rapid Prototyping"],
     accent: "oklch(0.72 0.21 300)",
     url: "https://iili.io/FlsOJxS.jpg",
-    image: "src/assets/hackathon-cert.jpg.asset.json",
+    image: hackathonCert.url,
   },
   {
     title: "Web Development Workshop",
@@ -116,7 +116,7 @@ const certs: Cert[] = [
     skills: ["HTML/CSS", "JavaScript", "Frontend"],
     accent: "oklch(0.82 0.18 165)",
     url: "https://iili.io/FlsOC5x.jpg",
-    image: "src/assets/webdev-cert.jpg.asset.json",
+    image: webdevCert.url,
   },
 ];
 
