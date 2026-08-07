@@ -75,7 +75,7 @@ export function About() {
               like <span className="text-aurora">industrial design.</span>
             </>
           }
-          description="I obsess over scalable architecture, sub-second interactions, and interfaces that feel inevitable. Three years deep into shipping production systems across web, mobile, and AI."
+          description="I build software that scales, performs, and lasts. Obsessed with clean architecture, lightning-fast user experiences, and products that people genuinely enjoy using. Over the past 1 year, I've designed and shipped production-ready web, mobile, and AI applications—transforming complex ideas into elegant, high-performance solutions."
         />
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
