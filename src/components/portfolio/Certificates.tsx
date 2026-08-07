@@ -267,7 +267,7 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
                 alt={`${cert.title} certificate`}
                 className={`max-w-full rounded-xl object-contain shadow-2xl ${
                   cert.issuer === "Cisco"
-                    ? "max-h-[82%] -translate-y-2"
+                    ? "mx-auto max-h-[82%] -translate-y-1"
                     : "max-h-full"
                 }`}
                 loading="lazy"
