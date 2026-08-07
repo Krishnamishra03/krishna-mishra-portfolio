@@ -119,34 +119,6 @@ export function Hero() {
             </span>
             Online
           </span>
-          {/* floating stat chips */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="absolute -left-28 top-4 hidden rounded-xl px-3 py-2 text-left glass-panel md:block float-y"
-          >
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Experience</div>
-            <div className="font-display text-sm font-semibold text-aurora">3+ Years</div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="absolute -right-28 top-10 hidden rounded-xl px-3 py-2 text-left glass-panel md:block float-y [animation-delay:-3s]"
-          >
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Projects</div>
-            <div className="font-display text-sm font-semibold text-aurora">40+ Shipped</div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="absolute -right-24 bottom-2 hidden rounded-xl px-3 py-2 text-left glass-panel md:block float-y [animation-delay:-6s]"
-          >
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Stack</div>
-            <div className="font-display text-sm font-semibold text-aurora">MERN · RN</div>
-          </motion.div>
         </motion.div>
 
         <motion.div
