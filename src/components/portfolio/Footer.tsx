@@ -11,9 +11,9 @@ export function Footer() {
           </div>
         </div>
         <div className="flex gap-8 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-          <a href="#" className="hover:text-foreground">GitHub</a>
-          <a href="#" className="hover:text-foreground">LinkedIn</a>
-          <a href="#" className="hover:text-foreground">Instagram</a>
+          <a href="https://github.com/Krishnamishra03" target="_blank" rel="noreferrer noopener" className="hover:text-foreground">GitHub</a>
+          <a href="https://www.linkedin.com/in/krishna-mishra-9a3b4b28b/" target="_blank" rel="noreferrer noopener" className="hover:text-foreground">LinkedIn</a>
+          <a href="https://twitter.com/Thekrishna02" target="_blank" rel="noreferrer noopener" className="hover:text-foreground">Twitter</a>
           <a href="mailto:hello@krishnamishra.dev" className="hover:text-foreground">Email</a>
         </div>
       </div>
