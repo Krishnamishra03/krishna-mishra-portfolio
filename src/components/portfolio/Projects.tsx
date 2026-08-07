@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "./Section";
-import careConnect from "@/assets/project-care-connect.jpg";
-import railway from "@/assets/project-railway.jpg";
-import gyan from "@/assets/project-gyan-ai.jpg";
-import wallpaper from "@/assets/project-wallpaper.jpg";
+import railGps from "@/assets/project-railgps-tracker.jpg";
+import eduFeedback from "@/assets/project-edufeedback.jpg";
+import careConnect from "@/assets/project-care-connect-new.jpg";
+import finSight from "@/assets/project-finsight.jpg";
+import kailora from "@/assets/project-kailora.jpg";
 
 const projects = [
   {
@@ -11,32 +12,45 @@ const projects = [
     n: "01",
     name: "Care Connect",
     tag: "Healthcare Platform",
-    desc: "End-to-end healthcare management — doctor appointments, video consultations, Razorpay payments, and a clinical admin dashboard.",
-    stack: ["Next.js", "Node.js", "MongoDB", "Razorpay", "WebRTC"],
+    desc: "End-to-end healthcare management — doctor appointments, video consultations, and a clinical admin dashboard built for real-world patient care.",
+    stack: ["JavaScript", "Node.js", "MongoDB", "WebRTC"],
+    link: "https://github.com/Krishnamishra03/Care-Connect",
   },
   {
-    img: railway,
+    img: railGps,
     n: "02",
-    name: "Rail-Vision Detection",
-    tag: "AI / Computer Vision",
-    desc: "YOLO-powered pole detection along railway corridors, with GPS-tagged inspection and automated CSV reporting.",
-    stack: ["Python", "YOLOv8", "OpenCV", "FastAPI", "GPS"],
+    name: "Rail GPS Tracker",
+    tag: "Mobile / Android",
+    desc: "Android app that records 1080p video with a real-time GPS overlay burned into the feed, plus frame-by-frame CSV export for railway inspections.",
+    stack: ["Kotlin", "Android", "Camera2", "GPS", "CSV"],
+    link: "https://github.com/Krishnamishra03/RailGps_Tracker",
   },
   {
-    img: gyan,
+    img: eduFeedback,
     n: "03",
-    name: "Gyan AI",
-    tag: "Smart Agriculture",
-    desc: "Voice + vision farming assistant for the field — multilingual chatbot, crop image recognition, and intelligent recommendations.",
-    stack: ["React Native", "OpenAI", "Firebase", "Vision API"],
+    name: "EduFeedback",
+    tag: "EdTech / Android",
+    desc: "Modern Android app for academic feedback collection — QR form sharing & scanning, real-time response analytics for admins, teachers, and students.",
+    stack: ["Kotlin", "Jetpack Compose", "QR", "Firebase"],
+    link: "https://github.com/Krishnamishra03/EduFeedback",
   },
   {
-    img: wallpaper,
+    img: finSight,
     n: "04",
-    name: "Lumen Wallpapers",
-    tag: "Mobile App",
-    desc: "Curated premium wallpaper app — categories, favorites, high-res downloads, and a refined dark interface.",
-    stack: ["React Native", "Firebase", "Expo"],
+    name: "FinSight",
+    tag: "FinTech / Web",
+    desc: "AI-powered personal finance dashboard with spending insights, budget tracking, investment summaries, and a polished dark-interface experience.",
+    stack: ["React", "TypeScript", "Tailwind", "Lovable"],
+    link: "https://finsight-sparkle.lovable.app/",
+  },
+  {
+    img: kailora,
+    n: "05",
+    name: "Kailora Labs",
+    tag: "Wallpaper Platform",
+    desc: "Premium wallpaper website with curated 4K collections, category discovery, favorites, and a cinematic dark gallery built for creators.",
+    stack: ["React", "Next.js", "CDN", "Stripe"],
+    link: "https://www.kailoralabs.in/",
   },
 ];
 
@@ -58,14 +72,19 @@ export function Projects() {
               transition={{ delay: (i % 2) * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className={`group relative ${i % 2 === 1 ? "md:translate-y-16" : ""}`}
             >
-              <a href="#" className="block">
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
                 <div className="relative mb-6 overflow-hidden rounded-3xl glass-panel p-1.5">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-[20px] bg-card">
                     <img
                       src={p.img}
                       alt={`${p.name} — ${p.tag}`}
-                      width={1600}
-                      height={1024}
+                      width={1280}
+                      height={960}
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
