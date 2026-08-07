@@ -265,7 +265,11 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
               <img
                 src={cert.image}
                 alt={`${cert.title} certificate`}
-                className="max-h-full max-w-full rounded-xl object-contain shadow-2xl"
+                className={`max-w-full rounded-xl object-contain shadow-2xl ${
+                  cert.issuer === "Cisco"
+                    ? "max-h-[82%] -translate-y-2"
+                    : "max-h-full"
+                }`}
                 loading="lazy"
               />
             </div>
