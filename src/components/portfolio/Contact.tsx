@@ -2,31 +2,40 @@ import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Magnetic } from "./Magnetic";
 
+const WEB3FORMS_KEY = "9ef08b4f-fb22-4a4f-99cf-c2c8031db65b";
+
 export function Contact() {
-  const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const [result, setResult] = useState<{ ok: boolean; msg: string } | null>(null);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const data = new FormData(form);
+    const formData = new FormData(form);
+    formData.append("access_key", WEB3FORMS_KEY);
+    formData.append("subject", `Portfolio inquiry from ${formData.get("name")}`);
+    formData.append("from_name", "Krishna Mishra Portfolio");
+
     setSending(true);
-
-    const body = [
-      `Name: ${data.get("name")}`,
-      `Email: ${data.get("email")}`,
-      `Phone: ${data.get("phone") || "N/A"}`,
-      `Message: ${data.get("message")}`,
-    ].join("\n");
-
-    window.location.href = `mailto:krishanamishra913@gmail.com?subject=Portfolio inquiry from ${data.get("name")}&body=${encodeURIComponent(body)}`;
-
-    setTimeout(() => {
-      form.reset();
-      setSent(true);
+    setResult(null);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        form.reset();
+        setResult({ ok: true, msg: "Message sent ✓ I'll be in touch soon." });
+      } else {
+        setResult({ ok: false, msg: data.message || "Something went wrong. Try again." });
+      }
+    } catch {
+      setResult({ ok: false, msg: "Network error. Please try again." });
+    } finally {
       setSending(false);
-      setTimeout(() => setSent(false), 5000);
-    }, 600);
+      setTimeout(() => setResult(null), 6000);
+    }
   };
 
   return (
@@ -70,9 +79,18 @@ export function Contact() {
                   disabled={sending}
                   className="w-full rounded-xl bg-foreground py-3.5 text-sm font-semibold text-background transition-all hover:opacity-90 disabled:opacity-60"
                 >
-                  {sending ? "Opening mail…" : sent ? "Sent ✓  I'll be in touch" : "Send transmission"}
+                  {sending ? "Sending…" : "Send transmission"}
                 </motion.button>
               </Magnetic>
+              {result && (
+                <motion.p
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`text-center font-mono text-[11px] uppercase tracking-[0.2em] ${result.ok ? "text-aurora" : "text-red-400"}`}
+                >
+                  {result.msg}
+                </motion.p>
+              )}
             </form>
           </div>
         </div>
