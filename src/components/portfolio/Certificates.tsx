@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import hackathonCert from "@/assets/hackathon-cert.jpg.asset.json";
+import webdevCert from "@/assets/webdev-cert.jpg.asset.json";
 import { SectionHeader } from "./Section";
 
 type Cert = {
@@ -10,6 +12,7 @@ type Cert = {
   accent: string;
   featured?: boolean;
   url: string;
+  image?: string;
 };
 
 const certs: Cert[] = [
@@ -94,6 +97,26 @@ const certs: Cert[] = [
     skills: ["Computer Programming", "Python"],
     accent: "oklch(0.78 0.16 230)",
     url: "https://www.credly.com/badges/ffab8766-0357-4fc9-98e8-b2a778d614c3/linked_in_profile",
+  },
+  {
+    title: "Certificate of Participation — Hackathon",
+    issuer: "Jagran Lakecity University",
+    year: "Apr 2025",
+    id: "JLU-HACK-2025",
+    skills: ["Teamwork", "Problem Solving", "Rapid Prototyping"],
+    accent: "oklch(0.72 0.21 300)",
+    url: "https://iili.io/FlsOJxS.jpg",
+    image: hackathonCert.url,
+  },
+  {
+    title: "Web Development Workshop",
+    issuer: "MNIT, Bhopal",
+    year: "Sep 2024",
+    id: "MNIT-WEB-2024",
+    skills: ["HTML/CSS", "JavaScript", "Frontend"],
+    accent: "oklch(0.82 0.18 165)",
+    url: "https://iili.io/FlsOC5x.jpg",
+    image: webdevCert.url,
   },
 ];
 
@@ -233,23 +256,32 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
               backgroundSize: "24px 24px",
             }}
           />
-          <div className="relative flex flex-col items-center gap-1">
-            <span
-              className="font-display text-3xl font-extrabold tracking-tight"
-              style={{ color: cert.accent }}
-            >
-              {cert.issuer
-                .replace(/\(.*\)/, "")
-                .trim()
-                .split(" ")
-                .slice(0, 2)
-                .map((w) => w[0])
-                .join("")}
-            </span>
-            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
-              {cert.year}
-            </span>
-          </div>
+          {cert.image ? (
+            <img
+              src={cert.image}
+              alt={`${cert.title} certificate`}
+              className="relative h-full w-full rounded-2xl object-cover"
+              loading="lazy"
+            />
+          ) : (
+            <div className="relative flex flex-col items-center gap-1">
+              <span
+                className="font-display text-3xl font-extrabold tracking-tight"
+                style={{ color: cert.accent }}
+              >
+                {cert.issuer
+                  .replace(/\(.*\)/, "")
+                  .trim()
+                  .split(" ")
+                  .slice(0, 2)
+                  .map((w) => w[0])
+                  .join("")}
+              </span>
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
+                {cert.year}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* title */}
