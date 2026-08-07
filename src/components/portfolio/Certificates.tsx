@@ -8,65 +8,82 @@ type Cert = {
   id: string;
   skills: string[];
   accent: string;
-  image: string;
   featured?: boolean;
 };
 
 const certs: Cert[] = [
   {
-    title: "Meta Front-End Developer",
-    issuer: "Meta · Coursera",
-    year: "2025",
-    id: "MFE-2K25-014",
-    skills: ["React", "UI Systems", "Accessibility"],
-    accent: "oklch(0.82 0.18 165)",
-    image: "/certs/meta-frontend.jpg",
+    title: "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
+    issuer: "Oracle",
+    year: "Sep 2025",
+    id: "102675378OCI25AICFA",
+    skills: ["AI Foundations", "OCI", "Cloud"],
+    accent: "oklch(0.72 0.19 25)",
     featured: true,
   },
   {
-    title: "AWS Certified Developer — Associate",
-    issuer: "Amazon Web Services",
-    year: "2024",
-    id: "AWS-DEV-A-9821",
-    skills: ["Lambda", "DynamoDB", "S3", "CI/CD"],
+    title: "AWS Educate Introduction to Generative AI",
+    issuer: "Amazon Web Services (AWS)",
+    year: "Sep 2025",
+    id: "AWS-EDU-GENAI",
+    skills: ["Generative AI", "AWS"],
     accent: "oklch(0.84 0.15 80)",
-    image: "/certs/aws-developer.jpg",
   },
   {
-    title: "Google UX Design Professional",
-    issuer: "Google · Coursera",
-    year: "2024",
-    id: "GUX-PRO-4471",
-    skills: ["Research", "Prototyping", "Figma"],
-    accent: "oklch(0.78 0.16 230)",
-    image: "/certs/google-ux.jpg",
-  },
-  {
-    title: "MongoDB Associate Developer",
-    issuer: "MongoDB University",
-    year: "2023",
-    id: "MDB-ADEV-3120",
-    skills: ["Aggregation", "Indexing", "Atlas"],
-    accent: "oklch(0.72 0.21 300)",
-    image: "/certs/mongodb-developer.jpg",
-  },
-  {
-    title: "React Native — The Practical Guide",
-    issuer: "Academind",
-    year: "2023",
-    id: "RN-PR-7765",
-    skills: ["Expo", "Native Modules", "Animations"],
+    title: "Problem Solving",
+    issuer: "HackerRank",
+    year: "Sep 2025",
+    id: "3e9a689d3259",
+    skills: ["Data Structures", "C++", "Algorithms"],
     accent: "oklch(0.82 0.18 165)",
-    image: "/certs/react-native.jpg",
   },
   {
-    title: "Stripe Certified Integration Engineer",
-    issuer: "Stripe",
-    year: "2025",
-    id: "STR-CIE-2208",
-    skills: ["Payments", "Webhooks", "Subscriptions"],
+    title: "SQL (Advanced)",
+    issuer: "HackerRank",
+    year: "Sep 2025",
+    id: "28a1820114ff",
+    skills: ["SQL", "Joins", "Window Functions"],
+    accent: "oklch(0.82 0.18 165)",
+  },
+  {
+    title: "SQL (Basic)",
+    issuer: "HackerRank",
+    year: "Sep 2025",
+    id: "75bdc955035",
+    skills: ["SQL", "Queries"],
+    accent: "oklch(0.82 0.18 165)",
+  },
+  {
+    title: "Python Coder",
+    issuer: "Kaggle",
+    year: "Nov 2025",
+    id: "KAGGLE-PY-CODER",
+    skills: ["Python", "Notebooks"],
     accent: "oklch(0.78 0.16 230)",
-    image: "/certs/stripe-payments.jpg",
+  },
+  {
+    title: "Introduction to Cybersecurity",
+    issuer: "Cisco",
+    year: "May 2025",
+    id: "CISCO-INTRO-CYBER",
+    skills: ["Cybersecurity"],
+    accent: "oklch(0.72 0.21 300)",
+  },
+  {
+    title: "Python Essentials 2",
+    issuer: "Cisco",
+    year: "Apr 2025",
+    id: "CISCO-PY-ESS-2",
+    skills: ["Iterators", "Python", "OOP"],
+    accent: "oklch(0.78 0.16 230)",
+  },
+  {
+    title: "Python Essentials 1",
+    issuer: "Cisco",
+    year: "Nov 2024",
+    id: "CISCO-PY-ESS-1",
+    skills: ["Computer Programming", "Python"],
+    accent: "oklch(0.78 0.16 230)",
   },
 ];
 
@@ -100,7 +117,7 @@ export function Certificates() {
           />
           <div className="hidden items-center gap-3 pb-14 md:flex">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-              Issued · 2023 → 2025
+              Issued · 2024 → 2025
             </span>
             <span className="h-px w-16 bg-gradient-to-r from-aurora to-transparent" />
           </div>
@@ -170,8 +187,8 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
                 animation: "spin 14s linear infinite",
               }}
             />
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-foreground">
-              {cert.year}
+            <span className="font-mono text-[9px] font-bold uppercase leading-none tracking-[0.05em] text-foreground">
+              {cert.year.split(" ").pop()}
             </span>
           </div>
         </div>
@@ -187,23 +204,42 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
           </span>
         </div>
 
-        {/* certificate image */}
+        {/* emblem plate */}
         <div
-          className="relative mb-5 overflow-hidden rounded-2xl border border-white/10 bg-black/20"
-          style={{ aspectRatio: "3 / 2" }}
+          className="relative mb-5 grid place-items-center overflow-hidden rounded-2xl border border-white/10 bg-black/20"
+          style={{ aspectRatio: "16 / 7" }}
         >
-          <img
-            src={cert.image}
-            alt={`${cert.title} certificate`}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
           <div
-            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            className="pointer-events-none absolute inset-0 opacity-40"
             style={{
-              background: `linear-gradient(135deg, ${cert.accent.replace(")", " / 0.12)")} 0%, transparent 60%)`,
+              background: `radial-gradient(ellipse at 30% 20%, ${cert.accent.replace(")", " / 0.22)")}, transparent 65%)`,
             }}
           />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, oklch(1 0 0 / .5) 1px, transparent 1px), linear-gradient(to bottom, oklch(1 0 0 / .5) 1px, transparent 1px)",
+              backgroundSize: "24px 24px",
+            }}
+          />
+          <div className="relative flex flex-col items-center gap-1">
+            <span
+              className="font-display text-3xl font-extrabold tracking-tight"
+              style={{ color: cert.accent }}
+            >
+              {cert.issuer
+                .replace(/\(.*\)/, "")
+                .trim()
+                .split(" ")
+                .slice(0, 2)
+                .map((w) => w[0])
+                .join("")}
+            </span>
+            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
+              {cert.year}
+            </span>
+          </div>
         </div>
 
         {/* title */}
