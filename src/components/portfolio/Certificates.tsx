@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import hackathonCert from "@/assets/hackathon-cert.jpg.asset.json";
 import webdevCert from "@/assets/webdev-cert.jpg.asset.json";
+import ciscoLogo from "@/assets/cisco-logo.png.asset.json";
 import { SectionHeader } from "./Section";
 
 type Cert = {
@@ -79,6 +80,7 @@ const certs: Cert[] = [
     skills: ["Cybersecurity"],
     accent: "oklch(0.72 0.21 300)",
     url: "https://www.credly.com/badges/6efe9eb0-f623-4ff3-88a4-031cec364740/linked_in_profile",
+    image: ciscoLogo.url,
   },
   {
     title: "Python Essentials 2",
@@ -88,6 +90,7 @@ const certs: Cert[] = [
     skills: ["Iterators", "Python", "OOP"],
     accent: "oklch(0.78 0.16 230)",
     url: "https://www.credly.com/badges/78b5dd06-d87b-4d71-8bb0-1e25dc74a797/linked_in_profile",
+    image: ciscoLogo.url,
   },
   {
     title: "Python Essentials 1",
@@ -97,6 +100,7 @@ const certs: Cert[] = [
     skills: ["Computer Programming", "Python"],
     accent: "oklch(0.78 0.16 230)",
     url: "https://www.credly.com/badges/ffab8766-0357-4fc9-98e8-b2a778d614c3/linked_in_profile",
+    image: ciscoLogo.url,
   },
   {
     title: "Certificate of Participation — Hackathon",
@@ -257,12 +261,23 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
             }}
           />
           {cert.image ? (
-            <img
-              src={cert.image}
-              alt={`${cert.title} certificate`}
-              className="relative h-full w-full rounded-2xl object-cover"
-              loading="lazy"
-            />
+            cert.issuer === "Cisco" ? (
+              <div className="relative flex h-full w-full items-center justify-center p-6">
+                <img
+                  src={cert.image}
+                  alt={`${cert.title} certificate`}
+                  className="max-h-full max-w-full rounded-2xl object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <img
+                src={cert.image}
+                alt={`${cert.title} certificate`}
+                className="relative h-full w-full rounded-2xl object-cover"
+                loading="lazy"
+              />
+            )
           ) : (
             <div className="relative flex flex-col items-center gap-1">
               <span
