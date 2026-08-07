@@ -4,6 +4,7 @@ import heroObjects from "@/assets/hero-objects.jpg";
 import { Magnetic } from "./Magnetic";
 import heroPhoto from "@/assets/hero-photo.png";
 import { ResumeModal } from "./ResumeModal";
+import { Typewriter } from "@/components/ui/typewriter-text";
 
 const typing = [
   "MERN Stack",
