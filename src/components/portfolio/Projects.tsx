@@ -3,7 +3,7 @@ import { SectionHeader } from "./Section";
 import railGps from "@/assets/project-railgps-tracker.jpg";
 import eduFeedback from "@/assets/project-edufeedback.jpg";
 import careConnect from "@/assets/project-care-connect-new.jpg";
-import finSight from "@/assets/project-finsight.jpg";
+import finSightAsset from "@/assets/finsight-ai.png.asset.json";
 import kailoraAsset from "@/assets/kailora-wallpaper.png.asset.json";
 
 const projects = [
@@ -35,12 +35,12 @@ const projects = [
     link: "https://github.com/Krishnamishra03/EduFeedback",
   },
   {
-    img: finSight,
+    img: finSightAsset.url,
     n: "04",
-    name: "FinSight",
-    tag: "FinTech / Web",
-    desc: "AI-powered personal finance dashboard with spending insights, budget tracking, investment summaries, and a polished dark-interface experience.",
-    stack: ["React", "TypeScript", "Tailwind", "Lovable"],
+    name: "FinSight AI",
+    tag: "AI Finance / Android",
+    desc: "Kotlin-built AI finance app that scans receipts, tracks spending, and delivers private offline financial advice through an on-device intelligence layer.",
+    stack: ["Kotlin", "Android", "AI/ML", "Llama 3.3", "Jetpack Compose"],
     link: "https://finsight-sparkle.lovable.app/",
   },
   {
