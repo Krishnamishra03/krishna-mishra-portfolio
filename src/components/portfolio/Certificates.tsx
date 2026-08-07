@@ -187,8 +187,8 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
                 animation: "spin 14s linear infinite",
               }}
             />
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-foreground">
-              {cert.year}
+            <span className="font-mono text-[9px] font-bold uppercase leading-none tracking-[0.05em] text-foreground">
+              {cert.year.split(" ").pop()}
             </span>
           </div>
         </div>
@@ -204,23 +204,42 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
           </span>
         </div>
 
-        {/* certificate image */}
+        {/* emblem plate */}
         <div
-          className="relative mb-5 overflow-hidden rounded-2xl border border-white/10 bg-black/20"
-          style={{ aspectRatio: "3 / 2" }}
+          className="relative mb-5 grid place-items-center overflow-hidden rounded-2xl border border-white/10 bg-black/20"
+          style={{ aspectRatio: "16 / 7" }}
         >
-          <img
-            src={cert.image}
-            alt={`${cert.title} certificate`}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
           <div
-            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            className="pointer-events-none absolute inset-0 opacity-40"
             style={{
-              background: `linear-gradient(135deg, ${cert.accent.replace(")", " / 0.12)")} 0%, transparent 60%)`,
+              background: `radial-gradient(ellipse at 30% 20%, ${cert.accent.replace(")", " / 0.22)")}, transparent 65%)`,
             }}
           />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, oklch(1 0 0 / .5) 1px, transparent 1px), linear-gradient(to bottom, oklch(1 0 0 / .5) 1px, transparent 1px)",
+              backgroundSize: "24px 24px",
+            }}
+          />
+          <div className="relative flex flex-col items-center gap-1">
+            <span
+              className="font-display text-3xl font-extrabold tracking-tight"
+              style={{ color: cert.accent }}
+            >
+              {cert.issuer
+                .replace(/\(.*\)/, "")
+                .trim()
+                .split(" ")
+                .slice(0, 2)
+                .map((w) => w[0])
+                .join("")}
+            </span>
+            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
+              {cert.year}
+            </span>
+          </div>
         </div>
 
         {/* title */}
