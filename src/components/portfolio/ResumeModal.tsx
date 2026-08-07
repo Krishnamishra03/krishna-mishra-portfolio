@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Download, ExternalLink, FileText } from "lucide-react";
+import { X, Download, ExternalLink, FileText, ZoomIn } from "lucide-react";
 import resumeAsset from "@/assets/Krishna_Kumar_Mishra_Resume.pdf.asset.json";
+import resumePreviewAsset from "@/assets/Krishna_Kumar_Mishra_Resume_Preview.png.asset.json";
 
 export function ResumeModal({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  const absoluteUrl = useMemo(() => {
+    if (typeof window === "undefined") return resumeAsset.url;
+    return new URL(resumeAsset.url, window.location.origin).href;
+  }, []);
+
+  useEffect(() => {
+    if (open) setLoaded(false);
+  }, [open]);
 
   return (
     <>
@@ -48,7 +59,7 @@ export function ResumeModal({ children }: { children: React.ReactNode }) {
                 </div>
                 <div className="flex items-center gap-2">
                   <a
-                    href={resumeAsset.url}
+                    href={absoluteUrl}
                     download="Krishna_Kumar_Mishra_Resume.pdf"
                     className="inline-flex items-center gap-2 rounded-xl bg-foreground px-4 py-2 text-xs font-semibold text-background transition-all hover:opacity-90 active:scale-95"
                   >
@@ -56,7 +67,7 @@ export function ResumeModal({ children }: { children: React.ReactNode }) {
                     <span className="hidden sm:inline">Download</span>
                   </a>
                   <a
-                    href={resumeAsset.url}
+                    href={absoluteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="grid size-9 place-items-center rounded-xl border border-white/10 text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
@@ -76,12 +87,36 @@ export function ResumeModal({ children }: { children: React.ReactNode }) {
               </div>
 
               {/* viewer */}
-              <div className="relative flex-1 overflow-hidden bg-white">
-                <iframe
-                  src={resumeAsset.url}
-                  title="Krishna Kumar Mishra Resume"
-                  className="h-[70vh] w-full md:h-[74vh]"
-                />
+              <div className="relative flex-1 overflow-hidden bg-[oklch(0.95_0_0)]">
+                {!loaded && (
+                  <div className="absolute inset-0 z-10 grid place-items-center bg-[oklch(0.95_0_0)]">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="h-8 w-8 animate-spin rounded-full border-2 border-aurora/20 border-t-aurora" />
+                      <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Loading preview…</span>
+                    </div>
+                  </div>
+                )}
+
+                <a
+                  href={absoluteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative block h-[70vh] w-full overflow-y-auto md:h-[74vh]"
+                  aria-label="Open PDF in new tab"
+                >
+                  <img
+                    src={resumePreviewAsset.url}
+                    alt="Krishna Kumar Mishra résumé preview"
+                    onLoad={() => setLoaded(true)}
+                    className="mx-auto w-full max-w-[850px] object-contain p-4 transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 flex items-start justify-end p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
+                      <ZoomIn className="h-3.5 w-3.5" />
+                      Open PDF
+                    </span>
+                  </div>
+                </a>
               </div>
 
               {/* footer */}
