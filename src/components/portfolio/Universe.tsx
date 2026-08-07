@@ -262,17 +262,37 @@ export function Universe() {
             </HudCard>
           </div>
 
-          {/* Mobile: Constellation column */}
+          {/* Mobile: Helical constellation */}
           <div className="relative mx-auto max-w-md md:hidden">
-            {/* Vertical glowing path */}
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-aurora/60 via-aurora/30 to-transparent" />
+            {/* Starfield */}
+            <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+              {Array.from({ length: 24 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="absolute h-px w-px rounded-full bg-white/80"
+                  style={{
+                    left: `${10 + Math.random() * 80}%`,
+                    top: `${Math.random() * 100}%`,
+                    opacity: 0.2 + Math.random() * 0.5,
+                    boxShadow: `0 0 ${4 + Math.random() * 6}px oklch(1 0 0 / ${0.3 + Math.random() * 0.4})`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Central data stream */}
+            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-aurora/40 via-aurora/20 to-transparent" />
             <div className="absolute left-6 top-0 bottom-0 w-px overflow-hidden">
-              <div className="h-24 w-full animate-pulse bg-gradient-to-b from-aurora via-aurora/50 to-transparent [animation-duration:3s]" />
+              <div
+                className="h-32 w-full bg-gradient-to-b from-transparent via-aurora to-transparent"
+                style={{ animation: "stream 2.5s linear infinite" }}
+              />
             </div>
 
             {/* Core node */}
-            <div className="relative mb-8 ml-14 flex items-center gap-4">
-              <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl border border-aurora/60 bg-aurora/15 shadow-[0_0_40px_oklch(0.85_0.15_200/0.35)] backdrop-blur-xl">
+            <div className="relative mb-10 ml-14 flex items-center gap-4">
+              <div className="relative grid h-18 w-18 shrink-0 place-items-center rounded-2xl border border-aurora/60 bg-aurora/15 shadow-[0_0_50px_oklch(0.85_0.15_200/0.4)] backdrop-blur-xl">
+                <div className="absolute inset-0 animate-pulse rounded-2xl border-2 border-aurora/30" />
                 <div className="text-center">
                   <div className="font-display text-2xl font-extrabold tracking-tighter text-foreground">KM</div>
                   <div className="font-mono text-[7px] uppercase tracking-[0.3em] text-aurora">core</div>
@@ -284,50 +304,76 @@ export function Universe() {
               </div>
             </div>
 
-            {/* Mobile node cards */}
-            <div className="space-y-5">
-              {nodes.map((n, i) => (
-                <button
-                  type="button"
-                  key={n.name}
-                  onClick={() => setActive(n)}
-                  className="group relative ml-14 flex w-full items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left backdrop-blur-md transition-all duration-300 active:scale-[0.98] hover:border-white/25 hover:bg-white/[0.08]"
-                  data-cursor
-                >
-                  {/* Waypoint dot on path */}
-                  <span
-                    className="absolute -left-[34px] top-1/2 size-2.5 -translate-y-1/2 rounded-full border border-white/20"
-                    style={{
-                      background: n.color,
-                      boxShadow: `0 0 12px ${n.color}`,
-                    }}
-                  />
-                  <span
-                    className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 font-mono text-[10px] font-bold"
-                    style={{ color: n.color, background: `${n.color.replace(")", " / 0.12)")}` }}
+            {/* Mobile node cards — helical alternating */}
+            <div className="relative space-y-6">
+              {nodes.map((n, i) => {
+                const isLeft = i % 2 === 0;
+                return (
+                  <button
+                    type="button"
+                    key={n.name}
+                    onClick={() => setActive(n)}
+                    className={`group relative flex w-[calc(100%-3.5rem)] items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3.5 text-left backdrop-blur-md transition-all duration-300 active:scale-[0.97] hover:border-white/30 hover:bg-white/[0.09] ${isLeft ? "ml-14" : "ml-14 flex-row-reverse"}`}
+                    data-cursor
                   >
-                    {n.name}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/60">
-                        {n.category}
-                      </span>
-                      <span className="font-mono text-[10px] text-aurora">{n.proficiency}%</span>
-                    </div>
-                    <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10">
-                      <div
-                        className="h-full rounded-full"
-                        style={{ width: `${n.proficiency}%`, background: n.color, boxShadow: `0 0 8px ${n.color}` }}
+                    {/* Connector arc */}
+                    <svg
+                      className={`pointer-events-none absolute top-1/2 h-8 w-8 -translate-y-1/2 text-aurora/30 ${isLeft ? "-left-8" : "-right-8 rotate-180"}`}
+                      viewBox="0 0 32 32"
+                      fill="none"
+                    >
+                      <path
+                        d="M32 16 C 20 16, 20 4, 0 4"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                        strokeDasharray="3 4"
                       />
+                    </svg>
+
+                    {/* Waypoint dot on stream */}
+                    <span
+                      className="absolute -left-[34px] top-1/2 size-2.5 -translate-y-1/2 rounded-full border border-white/20"
+                      style={{
+                        background: n.color,
+                        boxShadow: `0 0 14px ${n.color}`,
+                      }}
+                    />
+
+                    <span
+                      className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border font-mono text-[10px] font-bold"
+                      style={{
+                        color: n.color,
+                        borderColor: `${n.color.replace(")", " / 0.25)")}`,
+                        background: `linear-gradient(135deg, ${n.color.replace(")", " / 0.18)")}, ${n.color.replace(")", " / 0.05)")})`,
+                        boxShadow: n.glow ? `0 0 18px ${n.color.replace(")", " / 0.28)")}` : undefined,
+                      }}
+                    >
+                      {n.name}
+                    </span>
+
+                    <div className="min-w-0 flex-1">
+                      <div className={`flex items-center gap-2 ${isLeft ? "justify-between" : "justify-between flex-row-reverse"}`}>
+                        <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/60">
+                          {n.category}
+                        </span>
+                        <span className="font-mono text-[10px]" style={{ color: n.color }}>
+                          {n.proficiency}%
+                        </span>
+                      </div>
+                      <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10">
+                        <div
+                          className="h-full rounded-full"
+                          style={{ width: `${n.proficiency}%`, background: n.color, boxShadow: `0 0 8px ${n.color}` }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </button>
-              ))}
+                  </button>
+                );
+              })}
             </div>
 
             {/* Mobile HUD stack */}
-            <div className="mt-10 grid grid-cols-2 gap-3">
+            <div className="mt-12 grid grid-cols-2 gap-3">
               <HudCard title="Status" accent="oklch(0.85 0.15 200)">
                 <div className="space-y-1.5">
                   <Bar value={82} color="oklch(0.85 0.15 200)" />
