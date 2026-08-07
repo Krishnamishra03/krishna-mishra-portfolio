@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import hackathonCert from "@/assets/hackathon-cert.jpg.asset.json";
+import webdevCert from "@/assets/webdev-cert.jpg.asset.json";
 import { SectionHeader } from "./Section";
 
 type Cert = {
