@@ -403,7 +403,7 @@ export function Universe() {
 
         {/* Telemetry ticker */}
         <div className="relative mt-16 overflow-hidden rounded-2xl glass-panel [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex items-center gap-12 whitespace-nowrap px-6 py-3 font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground [animation:ticker_40s_linear_infinite]">
+          <div className="flex w-max min-w-max shrink-0 items-center gap-12 whitespace-nowrap px-6 py-3 font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground [animation:ticker_40s_linear_infinite] [will-change:transform]">
             {Array.from({ length: 2 }).flatMap((_, k) =>
               [
                 "Deployment · success",
