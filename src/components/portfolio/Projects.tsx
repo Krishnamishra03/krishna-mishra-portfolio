@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { SectionHeader } from "./Section";
 import railGps from "@/assets/project-railgps-tracker.jpg";
 import eduFeedback from "@/assets/project-edufeedback.jpg";
-import careConnect from "@/assets/project-care-connect-new.jpg";
+import careConnectAsset from "@/assets/care-connect.png.asset.json";
 import finSightAsset from "@/assets/finsight-ai.png.asset.json";
 import kailoraAsset from "@/assets/kailora-wallpaper.png.asset.json";
 
