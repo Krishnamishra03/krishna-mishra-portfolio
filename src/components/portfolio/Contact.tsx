@@ -41,14 +41,7 @@ export function Contact() {
                 <Field label="Name" name="name" />
                 <Field label="Email" name="email" type="email" />
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Phone" name="phone" type="tel" required={false} />
-                <SelectField
-                  label="Project type"
-                  name="type"
-                  options={["Full Stack Web", "Mobile App", "AI Integration", "Dashboard / Admin", "Other"]}
-                />
-              </div>
+              <Field label="Phone" name="phone" type="tel" required={false} />
               <TextareaField label="Message" name="message" />
               <Magnetic as="div" strength={0.25} radius={160} className="mt-2 w-full">
                 <motion.button
