@@ -49,6 +49,15 @@ const groups: { title: string; items: { name: string; level: number }[] }[] = [
     ],
   },
   {
+    title: "AI / ML",
+    items: [
+      { name: "Large Language Models (LLMs)", level: 82 },
+      { name: "Scikit-learn", level: 78 },
+      { name: "Data Preprocessing", level: 80 },
+      { name: "Generative AI", level: 85 },
+    ],
+  },
+  {
     title: "Tools",
     items: [
       { name: "Git", level: 92 },
