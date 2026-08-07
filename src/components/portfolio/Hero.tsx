@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import heroObjects from "@/assets/hero-objects.jpg";
 import { Magnetic } from "./Magnetic";
 import heroPhoto from "@/assets/hero-photo.png";
+import resumeAsset from "@/assets/Krishna_Kumar_Mishra_Resume.pdf.asset.json";
 
 const typing = [
   "MERN Stack",
@@ -236,7 +237,8 @@ export function Hero() {
           </Magnetic>
           <Magnetic
             as="a"
-            href="#"
+            href={resumeAsset.url}
+            download="Krishna_Kumar_Mishra_Resume.pdf"
             strength={0.35}
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl px-7 py-3.5 text-sm font-semibold text-foreground glass-panel transition-all duration-500 hover:bg-white/[0.08] hover:ring-white/25 active:scale-[0.97]"
           >

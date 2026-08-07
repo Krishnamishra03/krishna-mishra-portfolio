@@ -3,6 +3,8 @@ import { SectionHeader } from "./Section";
 
 type Line = { kind: "in" | "out"; text: string };
 
+import resumeAsset from "@/assets/Krishna_Kumar_Mishra_Resume.pdf.asset.json";
+
 const responses: Record<string, string[]> = {
   whoami: ["krishna_mishra — software engineer · full stack · mobile"],
   skills: [
@@ -23,9 +25,10 @@ const responses: Record<string, string[]> = {
     "→ frontend, ui polish, git collaboration, bug-fixing",
   ],
   github: ["github.com/Krishnamishra03 · 17 public repos · live stats in the open source section"],
-  resume: ["resume.pdf — type `download` to fetch"],
+  resume: ["krishna_kumar_mishra_resume.pdf — type `download` to fetch"],
+  download: ["initiating download...", `→ ${resumeAsset.url}`],
   contact: ["mail: hello@krishna.dev", "scroll to #contact to send a message"],
-  help: ["available: whoami, skills, projects, experience, github, resume, contact, clear"],
+  help: ["available: whoami, skills, projects, experience, github, resume, download, contact, clear"],
 };
 
 export function Terminal() {
