@@ -96,8 +96,8 @@ export function Universe() {
         />
 
         <motion.div style={{ y: lift }} className="relative mt-12">
-          {/* HUD left */}
-          <div className="pointer-events-none absolute left-0 top-1/2 z-20 hidden w-56 -translate-y-1/2 flex-col gap-3 md:flex">
+          {/* Desktop: HUD left */}
+          <div className="pointer-events-none absolute left-0 top-1/2 z-20 hidden w-56 -translate-y-1/2 flex-col gap-3 lg:flex">
             <HudCard title="System Status" accent="oklch(0.85 0.15 200)">
               <div className="space-y-2">
                 <Bar value={82} color="oklch(0.85 0.15 200)" />
@@ -117,10 +117,10 @@ export function Universe() {
             </HudCard>
           </div>
 
-          {/* Isometric stage */}
+          {/* Desktop: Isometric stage */}
           <div
             ref={stage}
-            className="relative mx-auto flex h-[640px] w-full max-w-4xl items-center justify-center [perspective:1400px]"
+            className="relative mx-auto hidden h-[640px] w-full max-w-4xl items-center justify-center [perspective:1400px] md:flex"
           >
             <div
               className="relative transition-transform duration-500 ease-out"
@@ -235,8 +235,8 @@ export function Universe() {
             </div>
           </div>
 
-          {/* HUD right */}
-          <div className="pointer-events-none absolute right-0 top-1/2 z-20 hidden w-56 -translate-y-1/2 flex-col gap-3 md:flex">
+          {/* Desktop: HUD right */}
+          <div className="pointer-events-none absolute right-0 top-1/2 z-20 hidden w-56 -translate-y-1/2 flex-col gap-3 lg:flex">
             <HudCard title="Active Protocols" accent="oklch(0.78 0.18 300)">
               <ul className="font-mono text-[10px] uppercase tracking-widest text-foreground/70 space-y-1">
                 <li>&gt; GraphQL mesh</li>
@@ -260,6 +260,98 @@ export function Universe() {
                 ◉ stable · 42rps
               </div>
             </HudCard>
+          </div>
+
+          {/* Mobile: Constellation column */}
+          <div className="relative mx-auto max-w-md md:hidden">
+            {/* Vertical glowing path */}
+            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-aurora/60 via-aurora/30 to-transparent" />
+            <div className="absolute left-6 top-0 bottom-0 w-px overflow-hidden">
+              <div className="h-24 w-full animate-pulse bg-gradient-to-b from-aurora via-aurora/50 to-transparent [animation-duration:3s]" />
+            </div>
+
+            {/* Core node */}
+            <div className="relative mb-8 ml-14 flex items-center gap-4">
+              <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl border border-aurora/60 bg-aurora/15 shadow-[0_0_40px_oklch(0.85_0.15_200/0.35)] backdrop-blur-xl">
+                <div className="text-center">
+                  <div className="font-display text-2xl font-extrabold tracking-tighter text-foreground">KM</div>
+                  <div className="font-mono text-[7px] uppercase tracking-[0.3em] text-aurora">core</div>
+                </div>
+              </div>
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-aurora">Digital Universe</div>
+                <div className="text-xs text-muted-foreground">Tap any node to inspect the stack.</div>
+              </div>
+            </div>
+
+            {/* Mobile node cards */}
+            <div className="space-y-5">
+              {nodes.map((n, i) => (
+                <button
+                  type="button"
+                  key={n.name}
+                  onClick={() => setActive(n)}
+                  className="group relative ml-14 flex w-full items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left backdrop-blur-md transition-all duration-300 active:scale-[0.98] hover:border-white/25 hover:bg-white/[0.08]"
+                  data-cursor
+                >
+                  {/* Waypoint dot on path */}
+                  <span
+                    className="absolute -left-[34px] top-1/2 size-2.5 -translate-y-1/2 rounded-full border border-white/20"
+                    style={{
+                      background: n.color,
+                      boxShadow: `0 0 12px ${n.color}`,
+                    }}
+                  />
+                  <span
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 font-mono text-[10px] font-bold"
+                    style={{ color: n.color, background: `${n.color.replace(")", " / 0.12)")}` }}
+                  >
+                    {n.name}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/60">
+                        {n.category}
+                      </span>
+                      <span className="font-mono text-[10px] text-aurora">{n.proficiency}%</span>
+                    </div>
+                    <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10">
+                      <div
+                        className="h-full rounded-full"
+                        style={{ width: `${n.proficiency}%`, background: n.color, boxShadow: `0 0 8px ${n.color}` }}
+                      />
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile HUD stack */}
+            <div className="mt-10 grid grid-cols-2 gap-3">
+              <HudCard title="Status" accent="oklch(0.85 0.15 200)">
+                <div className="space-y-1.5">
+                  <Bar value={82} color="oklch(0.85 0.15 200)" />
+                  <Bar value={96} color="oklch(0.82 0.18 150)" />
+                </div>
+                <div className="mt-2 font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
+                  LATENCY · 14ms
+                </div>
+              </HudCard>
+              <HudCard title="Signal" accent="oklch(0.82 0.18 150)">
+                <div className="flex items-end gap-0.5">
+                  {[30, 50, 40, 70, 55, 80, 65, 90].map((h, i) => (
+                    <span
+                      key={i}
+                      className="w-1 rounded-sm bg-emerald-400/80"
+                      style={{ height: h * 0.3 }}
+                    />
+                  ))}
+                </div>
+                <div className="mt-2 font-mono text-[9px] uppercase tracking-widest text-emerald-400/90">
+                  ◉ stable
+                </div>
+              </HudCard>
+            </div>
           </div>
         </motion.div>
 
