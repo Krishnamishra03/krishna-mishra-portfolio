@@ -257,12 +257,40 @@ export function Hero() {
           </Magnetic>
         </motion.div>
 
+        {/* Stats strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.85, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-14 grid w-full max-w-5xl grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
+        >
+          {[
+            { value: "20+", label: "Projects shipped" },
+            { value: "5+", label: "Clients served" },
+            { value: "15+", label: "Technologies" },
+            { value: "100+", label: "GitHub commits" },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all duration-500 hover:border-white/[0.14] hover:bg-white/[0.05]"
+            >
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-aurora/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="font-display text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+                {stat.value}
+              </div>
+              <div className="mt-2 text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
         {/* scroll hint */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
-          className="mt-20 flex flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.4em] text-muted-foreground"
+          className="mt-16 flex flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.4em] text-muted-foreground"
         >
           <span>Scroll</span>
           <span className="h-10 w-px bg-gradient-to-b from-aurora/60 to-transparent" />
