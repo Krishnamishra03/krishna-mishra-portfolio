@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import heroObjects from "@/assets/hero-objects.jpg";
 import { Magnetic } from "./Magnetic";
 import heroPhoto from "@/assets/hero-photo.png";
-import resumeAsset from "@/assets/Krishna_Kumar_Mishra_Resume.pdf.asset.json";
+import { ResumeModal } from "./ResumeModal";
 
 const typing = [
   "MERN Stack",
@@ -235,35 +235,35 @@ export function Hero() {
               </span>
             </span>
           </Magnetic>
-          <Magnetic
-            as="a"
-            href={resumeAsset.url}
-            download="Krishna_Kumar_Mishra_Resume.pdf"
-            strength={0.35}
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl px-7 py-3.5 text-sm font-semibold text-foreground glass-panel transition-all duration-500 hover:bg-white/[0.08] hover:ring-white/25 active:scale-[0.97]"
-          >
-            {/* animated conic border on hover */}
-            <span className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 [background:conic-gradient(from_0deg,oklch(0.75_0.18_270),oklch(0.85_0.15_150),oklch(0.8_0.15_200),oklch(0.75_0.18_270))] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] [mask-composite:exclude] [padding:1px] animate-[spin_4s_linear_infinite]" />
-            <span className="relative z-10">Download Résumé</span>
-            <span className="relative z-10 flex h-4 w-4 items-center justify-center overflow-hidden">
-              <svg
-                className="h-4 w-4 text-muted-foreground transition-all duration-500 group-hover:-translate-y-6 group-hover:opacity-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              <svg
-                className="absolute h-4 w-4 translate-y-6 text-aurora transition-all duration-500 group-hover:translate-y-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-            </span>
-          </Magnetic>
+          <ResumeModal>
+            <Magnetic
+              as="button"
+              strength={0.35}
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl px-7 py-3.5 text-sm font-semibold text-foreground glass-panel transition-all duration-500 hover:bg-white/[0.08] hover:ring-white/25 active:scale-[0.97]"
+            >
+              {/* animated conic border on hover */}
+              <span className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 [background:conic-gradient(from_0deg,oklch(0.75_0.18_270),oklch(0.85_0.15_150),oklch(0.8_0.15_200),oklch(0.75_0.18_270))] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] [mask-composite:exclude] [padding:1px] animate-[spin_4s_linear_infinite]" />
+              <span className="relative z-10">Download Résumé</span>
+              <span className="relative z-10 flex h-4 w-4 items-center justify-center overflow-hidden">
+                <svg
+                  className="h-4 w-4 text-muted-foreground transition-all duration-500 group-hover:-translate-y-6 group-hover:opacity-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <svg
+                  className="absolute h-4 w-4 translate-y-6 text-aurora transition-all duration-500 group-hover:translate-y-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </span>
+            </Magnetic>
+          </ResumeModal>
           <Magnetic
             as="a"
             href="#contact"
