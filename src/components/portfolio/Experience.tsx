@@ -4,6 +4,18 @@ import { SectionHeader } from "./Section";
 
 const timeline: Milestone[] = [
   {
+    range: "Apr 2026 — Present",
+    org: "Prudent Systems Pvt. Ltd.",
+    role: "iOS Developer",
+    tag: "Internship · On-site",
+    accent: "oklch(0.75 0.17 45)",
+    bullets: [
+      "Building native iOS features in Swift for production apps.",
+      "Shipping cross-platform screens with React Native.",
+      "On-site in Bhopal, Madhya Pradesh — collaborating with the product team.",
+    ],
+  },
+  {
     range: "May 2025 — Aug 2025",
     org: "Zidio Development",
     role: "Web Developer Intern",
