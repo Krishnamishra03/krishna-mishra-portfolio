@@ -2,12 +2,34 @@ import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Magnetic } from "./Magnetic";
 
+const SHEET_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbxGPi-Zji96Ss9UPuNa-THXpELEcFvUVUMnJQ7iwvMS0JgWPln1KOo5eiSd_18XLWXv3A/exec";
+
 export function Contact() {
   const [sent, setSent] = useState(false);
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setSending(true);
+    setError(null);
+    try {
+      await fetch(SHEET_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        body: new URLSearchParams(data as unknown as Record<string, string>),
+      });
+      form.reset();
+      setSent(true);
+      setTimeout(() => setSent(false), 5000);
+    } catch {
+      setError("Couldn't send right now — please email me directly.");
+    } finally {
+      setSending(false);
+    }
   };
   return (
     <section id="contact" className="relative px-6 py-32">
@@ -47,11 +69,13 @@ export function Contact() {
                 <motion.button
                   whileTap={{ scale: 0.97 }}
                   type="submit"
-                  className="w-full rounded-xl bg-foreground py-3.5 text-sm font-semibold text-background transition-all hover:opacity-90"
+                  disabled={sending}
+                  className="w-full rounded-xl bg-foreground py-3.5 text-sm font-semibold text-background transition-all hover:opacity-90 disabled:opacity-60"
                 >
-                  {sent ? "Sent ✓  I'll be in touch" : "Send transmission"}
+                  {sending ? "Sending…" : sent ? "Sent ✓  I'll be in touch" : "Send transmission"}
                 </motion.button>
               </Magnetic>
+              {error && <p className="text-xs text-destructive">{error}</p>}
             </form>
           </div>
         </div>
