@@ -41,14 +41,7 @@ export function Contact() {
                 <Field label="Name" name="name" />
                 <Field label="Email" name="email" type="email" />
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Phone" name="phone" type="tel" required={false} />
-                <SelectField
-                  label="Project type"
-                  name="type"
-                  options={["Full Stack Web", "Mobile App", "AI Integration", "Dashboard / Admin", "Other"]}
-                />
-              </div>
+              <Field label="Phone" name="phone" type="tel" required={false} />
               <TextareaField label="Message" name="message" />
               <Magnetic as="div" strength={0.25} radius={160} className="mt-2 w-full">
                 <motion.button
@@ -91,22 +84,6 @@ function TextareaField({ label, name }: { label: string; name: string }) {
         rows={5}
         className="w-full resize-none rounded-xl border border-border bg-white/[0.03] px-4 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-aurora/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-aurora/20"
       />
-    </label>
-  );
-}
-
-function SelectField({ label, name, options }: { label: string; name: string; options: string[] }) {
-  return (
-    <label className="block space-y-1.5">
-      <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{label}</span>
-      <select
-        name={name}
-        className="w-full appearance-none rounded-xl border border-border bg-white/[0.03] px-4 py-3 text-sm text-foreground outline-none transition-all focus:border-aurora/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-aurora/20"
-      >
-        {options.map((o) => (
-          <option key={o} className="bg-background">{o}</option>
-        ))}
-      </select>
     </label>
   );
 }
