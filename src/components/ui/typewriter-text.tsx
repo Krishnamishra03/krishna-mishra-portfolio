@@ -10,6 +10,7 @@ export interface TypewriterProps {
   delay?: number;
   startDelay?: number;
   className?: string;
+  cursorClassName?: string;
 }
 
 export function Typewriter({
@@ -21,6 +22,7 @@ export function Typewriter({
   delay = 1500,
   startDelay = 0,
   className,
+  cursorClassName,
 }: TypewriterProps) {
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -79,7 +81,15 @@ export function Typewriter({
   return (
     <span className={className}>
       {displayText}
-      <span className="animate-pulse">{cursor}</span>
+      <span
+        className={
+          cursorClassName ||
+          "inline-block w-[3px] align-baseline animate-blink text-aurora drop-shadow-[0_0_6px_oklch(0.75_0.18_270)]"
+        }
+        aria-hidden="true"
+      >
+        {cursor}
+      </span>
     </span>
   );
 }
