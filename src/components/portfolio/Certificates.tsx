@@ -2,7 +2,19 @@ import { motion } from "framer-motion";
 import hackathonCert from "@/assets/hackathon-cert.jpg.asset.json";
 import webdevCert from "@/assets/webdev-cert.jpg.asset.json";
 import ciscoLogo from "@/assets/cisco-logo.png.asset.json";
+import kaggleLogo from "@/assets/kaggle-logo.png.asset.json";
+import hackerrankLogo from "@/assets/hackerrank-logo.png.asset.json";
+import oracleLogo from "@/assets/oracle-logo.png.asset.json";
+import awsLogo from "@/assets/aws-logo.png.asset.json";
 import { SectionHeader } from "./Section";
+
+const LOGO_ISSUERS = new Set([
+  "Cisco",
+  "Kaggle",
+  "HackerRank",
+  "Oracle",
+  "Amazon Web Services (AWS)",
+]);
 
 type Cert = {
   title: string;
@@ -26,6 +38,7 @@ const certs: Cert[] = [
     accent: "oklch(0.72 0.19 25)",
     featured: true,
     url: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=E67D6A420711F078B2044CC1ED2F986FE1E4E4D6C824B180E797BA93CB92DB59",
+    image: oracleLogo.url,
   },
   {
     title: "AWS Educate Introduction to Generative AI",
@@ -35,6 +48,7 @@ const certs: Cert[] = [
     skills: ["Generative AI", "AWS"],
     accent: "oklch(0.84 0.15 80)",
     url: "https://www.credly.com/badges/57a28c94-c56d-45d5-8f3a-fa6e56b6ea09/linked_in_profile",
+    image: awsLogo.url,
   },
   {
     title: "Problem Solving",
@@ -44,6 +58,7 @@ const certs: Cert[] = [
     skills: ["Data Structures", "C++", "Algorithms"],
     accent: "oklch(0.82 0.18 165)",
     url: "https://www.hackerrank.com/certificates/3e9a689d3259",
+    image: hackerrankLogo.url,
   },
   {
     title: "SQL (Advanced)",
@@ -53,6 +68,7 @@ const certs: Cert[] = [
     skills: ["SQL", "Joins", "Window Functions"],
     accent: "oklch(0.82 0.18 165)",
     url: "https://www.hackerrank.com/certificates/28a1820114ff",
+    image: hackerrankLogo.url,
   },
   {
     title: "SQL (Basic)",
@@ -62,6 +78,7 @@ const certs: Cert[] = [
     skills: ["SQL", "Queries"],
     accent: "oklch(0.82 0.18 165)",
     url: "https://www.hackerrank.com/certificates/a75bdc955035",
+    image: hackerrankLogo.url,
   },
   {
     title: "Python Coder",
@@ -71,6 +88,7 @@ const certs: Cert[] = [
     skills: ["Python", "Notebooks"],
     accent: "oklch(0.78 0.16 230)",
     url: "https://www.kaggle.com/certification/badges/mishrakrishna02/30",
+    image: kaggleLogo.url,
   },
   {
     title: "Introduction to Cybersecurity",
@@ -266,7 +284,7 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
                 src={cert.image}
                 alt={`${cert.title} certificate`}
                 className={`max-w-full rounded-xl object-contain shadow-2xl ${
-                  cert.issuer === "Cisco"
+                  LOGO_ISSUERS.has(cert.issuer)
                     ? "mx-auto max-h-[82%] -translate-y-1"
                     : "max-h-full"
                 }`}
