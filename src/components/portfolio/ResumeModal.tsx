@@ -1,10 +1,45 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Download, ExternalLink, FileText } from "lucide-react";
+import { X, Download, ExternalLink, FileText, AlertCircle, Loader2 } from "lucide-react";
 import resumeAsset from "@/assets/Krishna_Kumar_Mishra_Resume.pdf.asset.json";
 
 export function ResumeModal({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [viewer, setViewer] = useState<"native" | "google">("native");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+
+  const absoluteUrl = useMemo(() => {
+    if (typeof window === "undefined") return resumeAsset.url;
+    return new URL(resumeAsset.url, window.location.origin).href;
+  }, []);
+
+  const googleViewerUrl = useMemo(() => {
+    return `https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(absoluteUrl)}`;
+  }, [absoluteUrl]);
+
+  useEffect(() => {
+    if (open) {
+      setViewer("native");
+      setLoading(true);
+      setError(false);
+    }
+  }, [open]);
+
+  const handleLoad = () => {
+    setLoading(false);
+  };
+
+  const handleError = () => {
+    if (viewer === "native") {
+      setLoading(true);
+      setViewer("google");
+    } else {
+      setLoading(false);
+      setError(true);
+    }
+  };
 
   return (
     <>
@@ -48,7 +83,7 @@ export function ResumeModal({ children }: { children: React.ReactNode }) {
                 </div>
                 <div className="flex items-center gap-2">
                   <a
-                    href={resumeAsset.url}
+                    href={absoluteUrl}
                     download="Krishna_Kumar_Mishra_Resume.pdf"
                     className="inline-flex items-center gap-2 rounded-xl bg-foreground px-4 py-2 text-xs font-semibold text-background transition-all hover:opacity-90 active:scale-95"
                   >
@@ -56,7 +91,7 @@ export function ResumeModal({ children }: { children: React.ReactNode }) {
                     <span className="hidden sm:inline">Download</span>
                   </a>
                   <a
-                    href={resumeAsset.url}
+                    href={absoluteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="grid size-9 place-items-center rounded-xl border border-white/10 text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
@@ -76,12 +111,59 @@ export function ResumeModal({ children }: { children: React.ReactNode }) {
               </div>
 
               {/* viewer */}
-              <div className="relative flex-1 overflow-hidden bg-white">
-                <iframe
-                  src={resumeAsset.url}
-                  title="Krishna Kumar Mishra Resume"
-                  className="h-[70vh] w-full md:h-[74vh]"
-                />
+              <div className="relative flex-1 overflow-hidden bg-[oklch(0.95_0_0)]">
+                {loading && !error && (
+                  <div className="absolute inset-0 z-10 grid place-items-center bg-[oklch(0.95_0_0)]">
+                    <div className="flex flex-col items-center gap-3">
+                      <Loader2 className="h-8 w-8 animate-spin text-aurora" />
+                      <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Loading PDF…</span>
+                    </div>
+                  </div>
+                )}
+
+                {error ? (
+                  <div className="flex h-[70vh] flex-col items-center justify-center gap-4 bg-[oklch(0.95_0_0)] px-6 text-center md:h-[74vh]">
+                    <div className="grid size-16 place-items-center rounded-2xl bg-red-500/10">
+                      <AlertCircle className="h-8 w-8 text-red-400" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="font-display text-lg font-semibold text-foreground">Preview unavailable</p>
+                      <p className="max-w-xs text-sm text-muted-foreground">
+                        Your browser couldn’t render the PDF inline. Download it or open in a new tab.
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <a
+                        href={absoluteUrl}
+                        download="Krishna_Kumar_Mishra_Resume.pdf"
+                        className="inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-all hover:opacity-90 active:scale-95"
+                      >
+                        <Download className="h-4 w-4" />
+                        Download
+                      </a>
+                      <a
+                        href={absoluteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-white/5"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        Open in Tab
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  <iframe
+                    ref={iframeRef}
+                    key={viewer}
+                    src={viewer === "native" ? absoluteUrl : googleViewerUrl}
+                    title="Krishna Kumar Mishra Resume"
+                    type="application/pdf"
+                    onLoad={handleLoad}
+                    onError={handleError}
+                    className="h-[70vh] w-full md:h-[74vh]"
+                  />
+                )}
               </div>
 
               {/* footer */}
