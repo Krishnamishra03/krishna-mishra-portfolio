@@ -1,45 +1,34 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Magnetic } from "./Magnetic";
-import { useServerFn } from "@tanstack/react-start";
-import { submitContact } from "@/lib/contact.functions";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const send = useServerFn(submitContact);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
     setSending(true);
-    setError(null);
-    try {
-      const res = await send({
-        data: {
-          name: String(data.get("name") ?? ""),
-          email: String(data.get("email") ?? ""),
-          phone: String(data.get("phone") ?? ""),
-          message: String(data.get("message") ?? ""),
-        },
-      });
-      if (!res.ok) {
-        setError(
-          `Google Script ne request reject kar di (status ${res.status}). Apps Script ko re-deploy karein: Deploy → New deployment → Execute as: Me, Who has access: Anyone.`,
-        );
-        return;
-      }
+
+    const body = [
+      `Name: ${data.get("name")}`,
+      `Email: ${data.get("email")}`,
+      `Phone: ${data.get("phone") || "N/A"}`,
+      `Message: ${data.get("message")}`,
+    ].join("\n");
+
+    window.location.href = `mailto:krishanamishra913@gmail.com?subject=Portfolio inquiry from ${data.get("name")}&body=${encodeURIComponent(body)}`;
+
+    setTimeout(() => {
       form.reset();
       setSent(true);
-      setTimeout(() => setSent(false), 5000);
-    } catch {
-      setError("Couldn't send right now — please email me directly.");
-    } finally {
       setSending(false);
-    }
+      setTimeout(() => setSent(false), 5000);
+    }, 600);
   };
+
   return (
     <section id="contact" className="relative px-6 py-32">
       <div className="mx-auto max-w-6xl">
@@ -81,10 +70,9 @@ export function Contact() {
                   disabled={sending}
                   className="w-full rounded-xl bg-foreground py-3.5 text-sm font-semibold text-background transition-all hover:opacity-90 disabled:opacity-60"
                 >
-                  {sending ? "Sending…" : sent ? "Sent ✓  I'll be in touch" : "Send transmission"}
+                  {sending ? "Opening mail…" : sent ? "Sent ✓  I'll be in touch" : "Send transmission"}
                 </motion.button>
               </Magnetic>
-              {error && <p className="text-xs text-destructive">{error}</p>}
             </form>
           </div>
         </div>
