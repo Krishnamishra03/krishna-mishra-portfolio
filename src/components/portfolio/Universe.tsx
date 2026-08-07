@@ -291,7 +291,7 @@ export function Universe() {
 
             {/* Core node */}
             <div className="relative mb-10 ml-14 flex items-center gap-4">
-              <div className="relative grid h-18 w-18 shrink-0 place-items-center rounded-2xl border border-aurora/60 bg-aurora/15 shadow-[0_0_50px_oklch(0.85_0.15_200/0.4)] backdrop-blur-xl">
+              <div className="relative grid h-16 w-16 shrink-0 place-items-center rounded-2xl border border-aurora/60 bg-aurora/15 shadow-[0_0_50px_oklch(0.85_0.15_200/0.4)] backdrop-blur-xl">
                 <div className="absolute inset-0 animate-pulse rounded-2xl border-2 border-aurora/30" />
                 <div className="text-center">
                   <div className="font-display text-2xl font-extrabold tracking-tighter text-foreground">KM</div>
