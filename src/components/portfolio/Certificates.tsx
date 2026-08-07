@@ -80,6 +80,7 @@ const certs: Cert[] = [
     skills: ["Cybersecurity"],
     accent: "oklch(0.72 0.21 300)",
     url: "https://www.credly.com/badges/6efe9eb0-f623-4ff3-88a4-031cec364740/linked_in_profile",
+    image: ciscoLogo.url,
   },
   {
     title: "Python Essentials 2",
