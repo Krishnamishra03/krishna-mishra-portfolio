@@ -22,7 +22,7 @@ const responses: Record<string, string[]> = {
     "zidio development · web developer intern",
     "→ frontend, ui polish, git collaboration, bug-fixing",
   ],
-  github: ["github.com/krishna-mishra · 1.2k+ commits · public repos"],
+  github: ["github.com/Krishnamishra03 · 17 public repos · live stats in the open source section"],
   resume: ["resume.pdf — type `download` to fetch"],
   contact: ["mail: hello@krishna.dev", "scroll to #contact to send a message"],
   help: ["available: whoami, skills, projects, experience, github, resume, contact, clear"],
