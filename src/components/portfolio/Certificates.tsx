@@ -10,6 +10,7 @@ type Cert = {
   accent: string;
   featured?: boolean;
   url: string;
+  image?: string;
 };
 
 const certs: Cert[] = [
