@@ -137,12 +137,12 @@ export function Hero() {
           </span>
         </motion.div>
 
-        <h1 className="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold leading-[0.94] tracking-tight">
+        <h1 className="font-display text-[clamp(2rem,5.5vw,4.5rem)] font-extrabold leading-[0.98] tracking-tight">
           <motion.span
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="block whitespace-nowrap"
+            className="block text-balance"
           >
             <Typewriter text="Hello, I'm" speed={70} loop={false} startDelay={1100} />{" "}
             <span className="text-aurora">Krishna Mishra.</span>
