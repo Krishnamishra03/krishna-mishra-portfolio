@@ -100,6 +100,7 @@ const certs: Cert[] = [
     skills: ["Computer Programming", "Python"],
     accent: "oklch(0.78 0.16 230)",
     url: "https://www.credly.com/badges/ffab8766-0357-4fc9-98e8-b2a778d614c3/linked_in_profile",
+    image: ciscoLogo.url,
   },
   {
     title: "Certificate of Participation — Hackathon",
