@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Magnetic } from "./Magnetic";
 
 const SHEET_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbxGPi-Zji96Ss9UPuNa-THXpELEcFvUVUMnJQ7iwvMS0JgWPln1KOo5eiSd_18XLWXv3A/exec";
+  "https://script.google.com/macros/s/AKfycbx116oI-hGJGJxKJbdcpGxI-8bN7xKsO33LlZQI0jvCfyAPbGsEBlys1VltPrxLvr64XA/exec";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
