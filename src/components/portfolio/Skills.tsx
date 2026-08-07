@@ -188,11 +188,14 @@ export function Skills() {
                 className="relative"
               >
                 <div
-                  className={`absolute left-[-17px] top-1.5 size-2 rounded-full ${
-                    i === 0
-                      ? "bg-aurora shadow-[0_0_10px_rgba(var(--aurora-rgb),0.8)]"
-                      : "bg-border"
-                  }`}
+                  className="absolute left-[-17px] top-1.5 size-2 rounded-full"
+                  style={{
+                    backgroundColor: i === 0 ? "var(--aurora)" : "var(--border)",
+                    boxShadow:
+                      i === 0
+                        ? "0 0 10px color-mix(in oklab, var(--aurora) 80%, transparent)"
+                        : undefined,
+                  }}
                 />
                 <span className="mb-1 block font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                   {g.label}
