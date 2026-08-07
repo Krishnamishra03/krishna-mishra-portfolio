@@ -219,7 +219,7 @@ function PathCard({ step, index, total }: { step: Milestone; index: number; tota
           </div>
           <ul className={`relative mt-5 space-y-2 text-pretty text-muted-foreground ${isLeft ? "md:text-right" : ""}`}>
             {step.bullets.map((b) => (
-              <li key={b} className="flex gap-3">
+              <li key={b} className={`flex gap-3 ${isLeft ? "md:flex-row-reverse" : ""}`}>
                 <span
                   className="mt-2 size-1 shrink-0 rounded-full"
                   style={{ background: step.accent }}
