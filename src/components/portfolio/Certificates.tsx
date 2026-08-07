@@ -261,14 +261,23 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
             }}
           />
           {cert.image ? (
-            <img
-              src={cert.image}
-              alt={`${cert.title} certificate`}
-              className={`relative h-full w-full rounded-2xl ${
-                cert.issuer === "Cisco" ? "object-contain p-6" : "object-cover"
-              }`}
-              loading="lazy"
-            />
+            cert.issuer === "Cisco" ? (
+              <div className="relative flex h-full w-full items-center justify-center p-6">
+                <img
+                  src={cert.image}
+                  alt={`${cert.title} certificate`}
+                  className="max-h-full max-w-full rounded-2xl object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <img
+                src={cert.image}
+                alt={`${cert.title} certificate`}
+                className="relative h-full w-full rounded-2xl object-cover"
+                loading="lazy"
+              />
+            )
           ) : (
             <div className="relative flex flex-col items-center gap-1">
               <span
