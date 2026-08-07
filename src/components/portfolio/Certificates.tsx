@@ -256,23 +256,32 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
               backgroundSize: "24px 24px",
             }}
           />
-          <div className="relative flex flex-col items-center gap-1">
-            <span
-              className="font-display text-3xl font-extrabold tracking-tight"
-              style={{ color: cert.accent }}
-            >
-              {cert.issuer
-                .replace(/\(.*\)/, "")
-                .trim()
-                .split(" ")
-                .slice(0, 2)
-                .map((w) => w[0])
-                .join("")}
-            </span>
-            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
-              {cert.year}
-            </span>
-          </div>
+          {cert.image ? (
+            <img
+              src={cert.image}
+              alt={`${cert.title} certificate`}
+              className="relative h-full w-full rounded-2xl object-cover"
+              loading="lazy"
+            />
+          ) : (
+            <div className="relative flex flex-col items-center gap-1">
+              <span
+                className="font-display text-3xl font-extrabold tracking-tight"
+                style={{ color: cert.accent }}
+              >
+                {cert.issuer
+                  .replace(/\(.*\)/, "")
+                  .trim()
+                  .split(" ")
+                  .slice(0, 2)
+                  .map((w) => w[0])
+                  .join("")}
+              </span>
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
+                {cert.year}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* title */}
