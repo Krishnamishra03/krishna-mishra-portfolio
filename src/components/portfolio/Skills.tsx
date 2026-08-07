@@ -30,10 +30,13 @@ const groups: { title: string; items: { name: string; level: number }[] }[] = [
     ],
   },
   {
-    title: "Mobile",
+    title: "Android / iOS",
     items: [
       { name: "React Native", level: 88 },
-      { name: "Android", level: 72 },
+      { name: "Kotlin", level: 86 },
+      { name: "Swift", level: 78 },
+      { name: "UIKit", level: 74 },
+      { name: "Flutter", level: 70 },
     ],
   },
   {
