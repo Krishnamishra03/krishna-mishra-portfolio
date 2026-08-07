@@ -87,19 +87,3 @@ function TextareaField({ label, name }: { label: string; name: string }) {
     </label>
   );
 }
-
-function SelectField({ label, name, options }: { label: string; name: string; options: string[] }) {
-  return (
-    <label className="block space-y-1.5">
-      <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{label}</span>
-      <select
-        name={name}
-        className="w-full appearance-none rounded-xl border border-border bg-white/[0.03] px-4 py-3 text-sm text-foreground outline-none transition-all focus:border-aurora/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-aurora/20"
-      >
-        {options.map((o) => (
-          <option key={o} className="bg-background">{o}</option>
-        ))}
-      </select>
-    </label>
-  );
-}
