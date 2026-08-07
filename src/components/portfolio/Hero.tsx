@@ -4,6 +4,7 @@ import heroObjects from "@/assets/hero-objects.jpg";
 import { Magnetic } from "./Magnetic";
 import heroPhoto from "@/assets/hero-photo.png";
 import { ResumeModal } from "./ResumeModal";
+import { Typewriter } from "@/components/ui/typewriter-text";
 
 const typing = [
   "MERN Stack",
@@ -143,7 +144,8 @@ export function Hero() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="block whitespace-nowrap"
           >
-            Hello, I&apos;m <span className="text-aurora">Krishna Mishra.</span>
+            <Typewriter text="Hello, I'm" speed={70} loop={false} />{" "}
+            <span className="text-aurora">Krishna Mishra.</span>
           </motion.span>
           <motion.span
             initial={{ opacity: 0, y: 30 }}
