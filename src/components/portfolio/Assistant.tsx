@@ -6,7 +6,7 @@ const prompts: { q: string; a: string }[] = [
   { q: "Show projects", a: "Care Connect, Rail-Vision, Gyan AI, Lumen Wallpapers. Scroll to the Work section for the full case studies." },
   { q: "Show skills", a: "Frontend (React/Next/TS), Backend (Node/Express), Mobile (React Native), Databases (Mongo, Firebase), and AI tooling." },
   { q: "How to contact?", a: "Use the contact form at the bottom, or email hello@krishna.dev — replies within 24h." },
-  { q: "Download resume", a: "The Résumé button in the hero exports the latest PDF." },
+  { q: "Download resume", a: "Tap the Download Résumé button in the hero, or type `download` in the terminal." },
 ];
 
 export function Assistant() {
