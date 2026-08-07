@@ -341,10 +341,6 @@ function CertCard({ cert, index }: { cert: Cert; index: number }) {
           </a>
         </div>
 
-        {/* watermark */}
-        <div className="pointer-events-none absolute -bottom-10 -right-6 font-display text-[120px] font-extrabold leading-none tracking-tighter text-foreground/[0.025]">
-          {cert.year}
-        </div>
       </div>
     </motion.div>
   );
