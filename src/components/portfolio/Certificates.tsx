@@ -96,6 +96,26 @@ const certs: Cert[] = [
     accent: "oklch(0.78 0.16 230)",
     url: "https://www.credly.com/badges/ffab8766-0357-4fc9-98e8-b2a778d614c3/linked_in_profile",
   },
+  {
+    title: "Certificate of Participation — Hackathon",
+    issuer: "Jagran Lakecity University",
+    year: "Apr 2025",
+    id: "JLU-HACK-2025",
+    skills: ["Teamwork", "Problem Solving", "Rapid Prototyping"],
+    accent: "oklch(0.72 0.21 300)",
+    url: "https://iili.io/FlsOJxS.jpg",
+    image: "src/assets/hackathon-cert.jpg.asset.json",
+  },
+  {
+    title: "Web Development Workshop",
+    issuer: "MNIT, Bhopal",
+    year: "Sep 2024",
+    id: "MNIT-WEB-2024",
+    skills: ["HTML/CSS", "JavaScript", "Frontend"],
+    accent: "oklch(0.82 0.18 165)",
+    url: "https://iili.io/FlsOC5x.jpg",
+    image: "src/assets/webdev-cert.jpg.asset.json",
+  },
 ];
 
 export function Certificates() {
