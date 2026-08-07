@@ -141,7 +141,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="block"
+            className="block whitespace-nowrap"
           >
             Hello, I&apos;m <span className="text-aurora">Krishna Mishra.</span>
           </motion.span>
