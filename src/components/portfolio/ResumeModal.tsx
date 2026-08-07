@@ -158,7 +158,6 @@ export function ResumeModal({ children }: { children: React.ReactNode }) {
                     key={viewer}
                     src={viewer === "native" ? absoluteUrl : googleViewerUrl}
                     title="Krishna Kumar Mishra Resume"
-                    type="application/pdf"
                     onLoad={handleLoad}
                     onError={handleError}
                     className="h-[70vh] w-full md:h-[74vh]"
