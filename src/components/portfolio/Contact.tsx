@@ -1,14 +1,14 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Magnetic } from "./Magnetic";
-
-const SHEET_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbx116oI-hGJGJxKJbdcpGxI-8bN7xKsO33LlZQI0jvCfyAPbGsEBlys1VltPrxLvr64XA/exec";
+import { useServerFn } from "@tanstack/react-start";
+import { submitContact } from "@/lib/contact.functions";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const send = useServerFn(submitContact);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,11 +17,20 @@ export function Contact() {
     setSending(true);
     setError(null);
     try {
-      await fetch(SHEET_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        body: new URLSearchParams(data as unknown as Record<string, string>),
+      const res = await send({
+        data: {
+          name: String(data.get("name") ?? ""),
+          email: String(data.get("email") ?? ""),
+          phone: String(data.get("phone") ?? ""),
+          message: String(data.get("message") ?? ""),
+        },
       });
+      if (!res.ok) {
+        setError(
+          `Google Script ne request reject kar di (status ${res.status}). Apps Script ko re-deploy karein: Deploy → New deployment → Execute as: Me, Who has access: Anyone.`,
+        );
+        return;
+      }
       form.reset();
       setSent(true);
       setTimeout(() => setSent(false), 5000);
