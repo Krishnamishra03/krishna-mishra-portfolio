@@ -7,11 +7,10 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "22"
-  NITRO_PRESET = "netlify"
-
-[functions]
-  node_bundler = "esbuild"
+NODE_VERSION = "22"
+NITRO_PRESET = "netlify"
+# Nitro's Netlify preset auto-generates the SSR function under
+# .netlify/functions-internal/, so do NOT set a custom functions directory.
 
 [[headers]]
   for = "/assets/*"
