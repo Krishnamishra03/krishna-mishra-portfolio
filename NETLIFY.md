@@ -2,16 +2,28 @@
 
 This project is configured to build for Netlify SSR using Nitro.
 
-## One-click deploy steps
+## Guided import (recommended)
 
-1. **Push to GitHub**
-   - In Lovable: click the **+** menu → **GitHub** → **Connect project**.
-   - This creates a repo and syncs your code to it.
+1. **Connect GitHub once**
+   - In Lovable: **+** menu → **GitHub** → **Connect project** → **Create Repository**.
 
-2. **Import into Netlify**
-   - Go to [netlify.com](https://netlify.com) → **Add new site** → **Import an existing project**.
-   - Select the GitHub repo you just connected.
+2. **Run the guided import**
+   ```bash
+   npm run deploy:netlify
+   ```
+   This detects the GitHub remote of your checkout, builds the Netlify
+   one-click import URL for it, prints it, and opens it in your browser.
+   If GitHub isn't connected yet, it tells you exactly what to do first.
 
+3. **Confirm in Netlify**
+   - Click **Connect to GitHub**, pick the repo, authorize if asked.
+   - Build settings are pre-filled from `netlify.toml` — leave them as-is.
+   - Click **Deploy site**. Every future push to the default branch redeploys.
+
+## Manual import (fallback)
+
+1. Go to [netlify.com](https://netlify.com) → **Add new site** → **Import an existing project**.
+2. Select the GitHub repo you connected.
 3. **Leave build settings as detected**
    Netlify will read `netlify.toml` automatically:
    - **Build command:** `npm run build`
