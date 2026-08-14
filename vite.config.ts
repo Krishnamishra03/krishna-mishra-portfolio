@@ -13,6 +13,18 @@ export default defineConfig({
     server: { entry: "server" },
   },
   nitro: {
-    preset: "netlify",
+    preset: "vercel",
+    vercel: {
+      config: {
+        routes: [
+          // Images/PDFs live on Lovable's asset CDN and are referenced as /__l5e/assets-v1/*.
+          // Vercel has no such route, so proxy those requests to the Lovable-hosted origin.
+          {
+            src: "/__l5e/(.*)",
+            dest: "https://krishna-mishra-portfolio.lovable.app/__l5e/$1",
+          },
+        ],
+      },
+    },
   },
 });
