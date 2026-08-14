@@ -17,8 +17,15 @@ This is a TanStack Start (SSR) app. Nitro builds a Vercel-compatible output
 
 ## Environment variables
 
-None required for the public site. If you later add server secrets
-(e.g. `GROQ_API_KEY`), add them under Project → Settings → Environment Variables.
+The AI chatbot needs a Groq API key. In Vercel go to
+**Project → Settings → Environment Variables** and add:
+
+| Name           | Value                | Environments                     |
+| -------------- | -------------------- | -------------------------------- |
+| `GROQ_API_KEY` | your Groq API key    | Production, Preview, Development |
+
+After adding it, **redeploy** (Deployments → latest → ⋯ → Redeploy) —
+env vars are only injected at build/deploy time.
 
 ## Notes
 
