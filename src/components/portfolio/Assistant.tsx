@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useServerFn } from "@tanstack/react-start";
 import { askAssistant } from "@/lib/assistant.functions";
-import botIcon from "@/assets/bot-icon.png";
+import botIcon from "@/assets/bot-icon-v2.png";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
