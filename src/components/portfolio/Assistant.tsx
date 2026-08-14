@@ -81,7 +81,13 @@ export function Assistant() {
             className="glass-panel fixed bottom-20 right-5 z-[80] flex h-[min(520px,72vh)] w-[min(380px,92vw)] flex-col overflow-hidden rounded-2xl"
           >
             <div className="flex items-center gap-2 border-b border-border/60 px-4 py-3">
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-aurora/20 text-[10px] font-bold text-aurora">AI</span>
+              <img
+                src={botIcon}
+                alt="Krishna's AI assistant"
+                className="h-7 w-7 rounded-full object-contain ring-1 ring-aurora/30"
+                width={28}
+                height={28}
+              />
               <div>
                 <div className="text-sm font-semibold">Ask about Krishna</div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
