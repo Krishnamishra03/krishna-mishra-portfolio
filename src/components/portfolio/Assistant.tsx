@@ -1,17 +1,61 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useServerFn } from "@tanstack/react-start";
+import { askAssistant } from "@/lib/assistant.functions";
 
-const prompts: { q: string; a: string }[] = [
-  { q: "Who is Krishna?", a: "A Software Engineer focused on full-stack web and mobile — MERN, Next.js, React Native, and AI integrations." },
-  { q: "Show projects", a: "Care Connect, Rail-Vision, Gyan AI, Lumen Wallpapers. Scroll to the Work section for the full case studies." },
-  { q: "Show skills", a: "Frontend (React/Next/TS), Backend (Node/Express), Mobile (React Native), Databases (Mongo, Firebase), and AI tooling." },
-  { q: "How to contact?", a: "Use the contact form at the bottom, or email krishanamishra913@gmail.com — replies within 24h." },
-  { q: "Download resume", a: "Tap the Download Résumé button in the hero, or type `download` in the terminal." },
+type Msg = { role: "user" | "assistant"; content: string };
+
+const suggestions = [
+  "Who is Krishna?",
+  "Show me his projects",
+  "What's his tech stack?",
+  "How can I hire him?",
 ];
 
+const greeting: Msg = {
+  role: "assistant",
+  content: "Hi — I'm Krishna's portfolio assistant. Ask me about his projects, stack, experience, or how to hire him.",
+};
+
 export function Assistant() {
+  const ask = useServerFn(askAssistant);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<number | null>(null);
+  const [messages, setMessages] = useState<Msg[]>([greeting]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const scroller = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scroller.current?.scrollTo({ top: scroller.current.scrollHeight, behavior: "smooth" });
+  }, [messages, loading, open]);
+
+  const send = async (text: string) => {
+    const content = text.trim();
+    if (!content || loading) return;
+    const next: Msg[] = [...messages, { role: "user", content }];
+    setMessages(next);
+    setInput("");
+    setLoading(true);
+    try {
+      const res = await ask({
+        data: { messages: next.filter((m) => m !== greeting).map(({ role, content }) => ({ role, content })) },
+      });
+      setMessages((m) => [...m, { role: "assistant", content: res.reply }]);
+    } catch (err) {
+      setMessages((m) => [
+        ...m,
+        {
+          role: "assistant",
+          content:
+            err instanceof Error && err.message
+              ? err.message.replace(/^Error:\s*/, "")
+              : "Something went wrong. Please try again.",
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -36,42 +80,83 @@ export function Assistant() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.96 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-panel fixed bottom-20 right-5 z-[80] w-[min(360px,90vw)] overflow-hidden rounded-2xl"
+            className="glass-panel fixed bottom-20 right-5 z-[80] flex h-[min(520px,72vh)] w-[min(380px,92vw)] flex-col overflow-hidden rounded-2xl"
           >
             <div className="flex items-center gap-2 border-b border-border/60 px-4 py-3">
               <span className="grid h-7 w-7 place-items-center rounded-full bg-aurora/20 text-[10px] font-bold text-aurora">AI</span>
               <div>
                 <div className="text-sm font-semibold">Ask about Krishna</div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">offline · scripted</div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                  {loading ? "thinking…" : "portfolio assistant"}
+                </div>
               </div>
             </div>
-            <div className="space-y-2 p-3">
-              {prompts.map((p, i) => (
-                <button
-                  key={p.q}
-                  onClick={() => setActive(i === active ? null : i)}
-                  className="w-full rounded-xl border border-border/60 px-3 py-2 text-left text-sm transition-colors hover:bg-white/5"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span>{p.q}</span>
-                    <span className="text-aurora">{active === i ? "−" : "+"}</span>
+
+            <div ref={scroller} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+              {messages.map((m, i) => (
+                <div key={i} className={m.role === "user" ? "flex justify-end" : "flex justify-start"}>
+                  <div
+                    className={
+                      m.role === "user"
+                        ? "max-w-[85%] rounded-2xl rounded-br-sm bg-foreground px-3 py-2 text-xs leading-relaxed text-background"
+                        : "max-w-[90%] rounded-2xl rounded-bl-sm border border-border/60 bg-white/[0.03] px-3 py-2 text-xs leading-relaxed text-muted-foreground"
+                    }
+                  >
+                    {m.content}
                   </div>
-                  <AnimatePresence initial={false}>
-                    {active === i && (
-                      <motion.p
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="mt-2 overflow-hidden text-xs leading-relaxed text-muted-foreground"
-                      >
-                        {p.a}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </button>
+                </div>
               ))}
+              {loading && (
+                <div className="flex items-center gap-1.5 px-1">
+                  {[0, 1, 2].map((d) => (
+                    <span
+                      key={d}
+                      className="h-1.5 w-1.5 animate-pulse rounded-full bg-aurora"
+                      style={{ animationDelay: `${d * 0.15}s` }}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
+
+            {messages.length <= 1 && (
+              <div className="flex flex-wrap gap-1.5 px-4 pb-2">
+                {suggestions.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => send(s)}
+                    className="rounded-full border border-border/60 px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                void send(input);
+              }}
+              className="flex items-center gap-2 border-t border-border/60 px-3 py-2.5"
+            >
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Ask about projects, stack, hiring…"
+                className="flex-1 bg-transparent text-xs outline-none placeholder:text-muted-foreground/50"
+              />
+              <button
+                type="submit"
+                disabled={loading || !input.trim()}
+                className="grid h-8 w-8 place-items-center rounded-full bg-foreground text-background transition-opacity disabled:opacity-40"
+                aria-label="Send message"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </button>
+            </form>
           </motion.div>
         )}
       </AnimatePresence>
