@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { SectionHeader } from "./Section";
 
@@ -37,26 +37,33 @@ function Heatmap({ days }: { days: Day[] }) {
 export function GitHub() {
   const [days, setDays] = useState<Day[]>([]);
   const [total, setTotal] = useState<number | null>(null);
+  const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
   const [stats, setStats] = useState([
     { k: "Repositories", v: "—" },
     { k: "Stars earned", v: "—" },
     { k: "Contributions / yr", v: "—" },
     { k: "Top language", v: "—" },
   ]);
+  const aliveRef = useRef(true);
 
-  useEffect(() => {
-    let alive = true;
-
-    (async () => {
+  const load = useCallback(async () => {
+    const alive = () => aliveRef.current;
+    setRefreshing(true);
+    const noStore: RequestInit = { cache: "no-store" };
+    const bust = `_=${Date.now()}`;
       try {
         const [userRes, reposRes] = await Promise.all([
-          fetch(`https://api.github.com/users/${USERNAME}`),
-          fetch(`https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=updated`),
+          fetch(`https://api.github.com/users/${USERNAME}?${bust}`, noStore),
+          fetch(
+            `https://api.github.com/users/${USERNAME}/repos?per_page=100&sort=updated&${bust}`,
+            noStore,
+          ),
         ]);
         const user = await userRes.json();
         const repos: Array<{ stargazers_count: number; language: string | null }> =
           await reposRes.json();
-        if (!alive || !Array.isArray(repos)) return;
+        if (!alive() || !Array.isArray(repos)) throw new Error("stale");
 
         const starsEarned = repos.reduce((a, r) => a + (r.stargazers_count ?? 0), 0);
         const langCount = new Map<string, number>();
@@ -78,10 +85,11 @@ export function GitHub() {
 
       try {
         const res = await fetch(
-          `https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=last`,
+          `https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=last&${bust}`,
+          noStore,
         );
         const data = await res.json();
-        if (!alive || !Array.isArray(data?.contributions)) return;
+        if (!alive() || !Array.isArray(data?.contributions)) throw new Error("stale");
         setDays(data.contributions);
         const t = data?.total?.lastYear ?? null;
         setTotal(t);
@@ -93,12 +101,34 @@ export function GitHub() {
       } catch {
         /* keep placeholders */
       }
-    })();
+
+    if (aliveRef.current) {
+      setUpdatedAt(new Date());
+      setRefreshing(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    aliveRef.current = true;
+    void load();
+
+    const interval = window.setInterval(() => {
+      if (document.visibilityState === "visible") void load();
+    }, 60_000);
+
+    const onFocus = () => {
+      if (document.visibilityState === "visible") void load();
+    };
+    document.addEventListener("visibilitychange", onFocus);
+    window.addEventListener("focus", onFocus);
 
     return () => {
-      alive = false;
+      aliveRef.current = false;
+      window.clearInterval(interval);
+      document.removeEventListener("visibilitychange", onFocus);
+      window.removeEventListener("focus", onFocus);
     };
-  }, []);
+  }, [load]);
 
   return (
     <section className="relative bg-card/20 px-6 py-32">
@@ -108,6 +138,30 @@ export function GitHub() {
           title={<>A consistent <span className="text-aurora">commit</span> cadence.</>}
           description="Shipping code in the open. These numbers are pulled live from my GitHub profile."
         />
+        <div className="mb-6 flex flex-wrap items-center gap-4">
+          <span className="inline-flex items-center gap-2 rounded-full border border-aurora/30 bg-aurora/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.25em] text-aurora">
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-aurora opacity-70" />
+              <span className="relative inline-flex size-2 rounded-full bg-aurora" />
+            </span>
+            Live
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            {refreshing
+              ? "Syncing…"
+              : updatedAt
+                ? `Updated ${updatedAt.toLocaleTimeString()}`
+                : "Connecting…"}
+          </span>
+          <button
+            type="button"
+            onClick={() => void load()}
+            disabled={refreshing}
+            className="rounded-full border border-border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-aurora/60 hover:text-foreground disabled:opacity-50"
+          >
+            Refresh
+          </button>
+        </div>
         <div className="glass-panel rounded-3xl p-8 md:p-10">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-6">
             <div>
