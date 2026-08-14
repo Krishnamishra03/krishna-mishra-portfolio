@@ -63,14 +63,11 @@ export function Assistant() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="AI assistant"
-        className="fixed bottom-5 right-5 z-[80] grid h-12 w-12 place-items-center rounded-full bg-foreground text-background shadow-2xl transition-transform hover:scale-105 active:scale-95"
+        className="fixed bottom-5 right-5 z-[80] grid h-12 w-12 place-items-center overflow-hidden rounded-full bg-foreground shadow-2xl ring-2 ring-aurora/30 transition-transform hover:scale-105 active:scale-95"
       >
-        <span className="relative">
+        <span className="relative grid h-full w-full place-items-center">
           <span className="absolute inset-0 -m-1 animate-ping rounded-full bg-aurora/40" />
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" />
-            <circle cx="12" cy="12" r="3.2" />
-          </svg>
+          <img src={botIcon} alt="Krishna's AI assistant" className="h-9 w-9 object-contain" width={36} height={36} />
         </span>
       </button>
 
