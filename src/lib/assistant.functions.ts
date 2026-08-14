@@ -62,7 +62,11 @@ export const askAssistant = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => ChatInput.parse(data))
   .handler(async ({ data }) => {
     const apiKey = process.env["GROQ_API_KEY"];
-    if (!apiKey) throw new Error("Missing GROQ_API_KEY");
+    if (!apiKey) {
+      throw new Error(
+        "Assistant is not configured on this deployment — the GROQ_API_KEY environment variable is missing.",
+      );
+    }
 
     const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
