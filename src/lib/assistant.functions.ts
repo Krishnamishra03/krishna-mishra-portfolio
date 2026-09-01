@@ -75,7 +75,7 @@ export const askAssistant = createServerFn({ method: "POST" })
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: "qwen/qwen3.8-27b",
         temperature: 0.4,
         max_tokens: 400,
         messages: [{ role: "system", content: SYSTEM_PROMPT }, ...data.messages],
