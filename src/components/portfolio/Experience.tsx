@@ -5,9 +5,9 @@ import { SectionHeader } from "./Section";
 const timeline: Milestone[] = [
   {
     range: "Apr 2026 — Present",
-    org: "Prudent Systems Pvt. Ltd.",
-    role: "iOS Developer",
-    tag: "Internship · On-site",
+    org: "AgriDoot by NovosEdge Pvt. Ltd.",
+    role: "Software Engineer Trainee",
+    tag: "Full-time · On-site",
     accent: "oklch(0.75 0.17 45)",
     bullets: [
       "Building native iOS features in Swift for production apps.",

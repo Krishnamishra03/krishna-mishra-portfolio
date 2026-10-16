@@ -31,7 +31,7 @@ STACK:
 - Tools: Git, GitHub, Postman, VS Code
 
 EXPERIENCE:
-- iOS Developer Intern — Prudent Systems (mobile app development, Swift/UIKit work)
+- Software Engineer Trainee — AgriDoot by NovosEdge Pvt. Ltd., Apr 2026 – present (full-time, on-site in Bhopal; native iOS in Swift/UIKit, cross-platform screens with React Native)
 - Web Developer Intern — Zidio Development, May 2025 – Aug 2025 (frontend development, UI improvements, bug fixing, Git collaboration)
 
 PROJECTS:
